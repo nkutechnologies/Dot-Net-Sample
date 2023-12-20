@@ -1,0 +1,81 @@
+﻿@model RWFOUNDATIONWebsite.DataModels.Packages.PackageDetail
+@{
+    ViewData["Title"] = "DetailPackageItem";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+    <div class="bg-white p-2">
+        <div class="row no-gutters">
+            <div class="col-md-12 col-lg col-sm-12 col-12 align-items-center">
+                <div class="card-body align-items-center bg-warning">
+                    <div>                      
+                       <h5 class="text-white font-weight-bold">@Model.PackageDetailName</h5>
+                       <span class="text-white">@Model.Package.PackageName</span>
+                    </div>
+                </div>
+            </div>         
+        </div>
+        <hr class="m-0">
+
+        <div class="card-body">
+            <h6 class="small font-weight-semibold mb-4">Details</h6>
+            <div class="table-responsive">
+                <table class="table product-item-table">
+                    <tbody>
+                        <tr>
+                            <td>Package Value(PKR)</td>
+                            <td class="bg-light">
+                                <strong class="align-middle">PKR @Convert.ToInt32(Model.PackageValuePKR)</strong>
+                            </td>
+                            <td class="bg-light">
+                                <img src="~/assets/img/pak.png" alt="Alternate Text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Package Value(SR)</td>
+                            <td class="bg-light">
+                                <strong>SAR @Model.PackageValueSR</strong>
+                            </td>
+                            <td class="bg-light">
+                                <img src="~/assets/img/saudi.png" alt="Alternate Text" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Package Value(USD)</td>
+                            <td class="bg-light">
+                                <strong>$ @Model.PackageValueUSD</strong>
+                            </td>
+                            <td class="bg-light">
+                                <img src="~/assets/img/usa.png" height="32" width="32" alt="Alternate Text" />
+                            </td>
+                        </tr>                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr class="m-0">     
+
+        <div class="card-body product-item-table">
+            <h6 class="small font-weight-semibold mb-4">Package Items</h6>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PackageItems)
+                        {
+                            <tr>
+                                <td>@item.Item.ItemName</td>
+                                <td>@Convert.ToInt32(item.PackageQuantity) @item.Item.Unit.Name</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <a asp-controller="Package" asp-action="PackageItemsList" class="btn btn-link float-right">Back</a>
+        </div>
+    </div>

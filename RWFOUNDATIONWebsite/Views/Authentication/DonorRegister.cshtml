@@ -1,0 +1,117 @@
+﻿@model SignUpViewModel
+@{
+    ViewData["Title"] = "DonorRegister";
+    Layout = "~/Views/Shared/_LoginSignUpLayout.cshtml";
+}
+
+<div class="container" style="margin-top: 50px;">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="~/assets/img/RW/logo.jpg" height="100" width="100" class="rounded-circle mt-5" alt="icon" />
+                    <h3 class="pt-2">Join Us</h3>
+                    <p>
+                        RW Foundation was established in 2009 with the goal of helping poor and needy people.
+                        Starting from 1 family to 4,165 per month, i.e more than 18,000 individuals.
+                    </p>
+                    <button type="button" class="btn btn-warning">About</button>
+                </div>
+                <div class="col-md-7">
+                    <h2>Register here</h2>
+                    <form class="" asp-controller="Authentication" asp-action="DonorRegister" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="row pl-0 pr-0">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-3">
+                                <p>As</p>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9 col-9">
+                                <div class="d-flex">
+                                    <label class="custom-control custom-radio">
+                                        <input name="As" type="radio" id="Donor" value="Donor" asp-for="As" class="custom-control-input" checked>
+                                        <span class="custom-control-label">Donor</span>
+                                    </label>
+                                    <label class="custom-control custom-radio ml-4">
+                                        <input name="As" type="radio" id="Beneficiary" asp-for="As" value="Beneficiary" class="custom-control-input">
+                                        <span class="custom-control-label">Beneficiary</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                <label asp-for="Email">Email</label>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" asp-for="Email" placeholder="example@gmail.com" />
+                                </div>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                <label asp-for="PhoneNumber">Mobile</label>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="92 300 0000 111" />
+                                </div>
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                <label asp-for="DateOfBirth">Date Of Birth</label>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <input type="date" class="form-control" asp-for="DateOfBirth" value="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="enter date of birth" />
+                                </div>
+                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                <label asp-for="Address">Address</label>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" asp-for="Address" placeholder="Enter Your Address" />
+                                </div>
+                                <span asp-validation-for="Address" class="text-danger"></span>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                <label asp-for="Password">Password</label>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <input type="password" asp-for="Password"
+                                           class="form-control"
+                                           placeholder="Enter Your Password" />
+                                </div>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                <label asp-for="ConfirmPassword">Confirm Password</label>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                                <div class="form-group">
+                                    <input type="password"
+                                           asp-for="ConfirmPassword"
+                                           class="form-control"
+                                           placeholder="Confirm Password" />
+                                </div>
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-block mt-3">Register</button>
+                        <div class="bg-lightest text-muted small p-2 mt-4">
+                            By clicking "Sign Up", you agree to our
+                            <a href="javascript:void(0)">terms of service and privacy policy</a>. We’ll occasionally send you account related emails.
+                        </div>
+                    </form>
+                    <div class="text-center text-muted pb-3">
+                        Already have an account?
+                        <a asp-controller="Authentication" asp-action="Login" class="text-warning">Sign In</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />    
+}

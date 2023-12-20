@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "RegistrationSuccess";
+    Layout = "~/Views/Shared/_LoginSignUpLayout.cshtml";
+}
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-xl-8 col-lg- col-md-8 col-sm-12 col-12 offset-xl-2 offset-lg-2 offset-md-2">
+                <div class="card">
+                    <div class="p-4 p-sm-5">
+                        <div class="display-1 lnr lnr-checkmark-circle text-center text-success mb-4"></div>
+                        <h5 class="text-center text-success text-big mb-4">@ViewBag.success</h5>
+                        <p>@ViewBag.message</p>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

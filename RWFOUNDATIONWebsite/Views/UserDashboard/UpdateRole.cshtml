@@ -1,0 +1,66 @@
+﻿@model UpdateRoleViewModel
+@{
+    ViewData["Title"] = "UpdateRole";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<div class="row justify-content-center ">
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-12">
+        <form asp-controller="UserDashboard" asp-action="UpdateRole" method="post" class="shadow-lg p-4 ">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Update Role</h2>
+                </div>                
+            </div>           
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-user-run"></i></span>
+                    </div>
+                    <input asp-for="Id" class="form-control" disabled>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-user-run"></i></span>
+                    </div>
+                    <input asp-for="Name" class="form-control" placeholder="Name" type="text">
+                </div>
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <button type="submit" name="update" id="btn-update" class="btn btn-glow-warning btn-warning mt-3 ">Update</button>
+            <a asp-controller="UserDashboard" asp-action="ListRoles" class="btn  btn-light mt-3 ">Cancel</a>
+        </form>
+    </div>
+</div>
+<hr />
+<div>
+    <div class="card mb-2">
+        <div class="card-header">
+            List Of Users In This Role
+        </div>
+        <div class="card-body">
+            @if (Model.Users.Any())
+            {
+                foreach (var users in Model.Users)
+                {
+                    <h5 class="card-title">@users</h5>
+                }
+            }
+            else
+            {
+                <h4>There is No User In this Role</h4>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-action="EditeUserInRole" asp-controller="UserDashboard" asp-route-RoleId="@Model.Id" class="btn btn-warning">Add or Remove User</a>
+
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

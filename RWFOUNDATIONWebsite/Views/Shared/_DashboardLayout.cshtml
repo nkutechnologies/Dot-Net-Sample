@@ -1,0 +1,393 @@
+﻿@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Http
+@{
+    var UserName = Context.Session.GetString("UserName");
+    int UserId = Convert.ToInt32(Context.Session.GetInt32("UserID"));    
+    int CompanyId = Convert.ToInt32(Context.Session.GetInt32("CompanyId"));    
+   
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/assets/img/RW/logo.jpg" rel="icon">
+    <link href="~/assets/img/RW/logo.jpg" rel="apple-touch-icon">
+    <link rel="stylesheet" href="~/Dashboard/fonts/fontawesome.css">
+    <link rel="stylesheet" href="~/Dashboard/fonts/ionicons.css">
+    <link rel="stylesheet" href="~/Dashboard/fonts/linearicons.css">
+    <link rel="stylesheet" href="~/Dashboard/fonts/open-iconic.css">
+    <link rel="stylesheet" href="~/Dashboard/fonts/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="~/Dashboard/fonts/feather.css">
+    <link href="~/Dashboard/libs/alertifyjs/css/alertify.min.css" rel="stylesheet" />
+    <link href="~/Dashboard/libs/alertifyjs/css/themes/default.css" rel="stylesheet" />
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="~/Dashboard/css/bootstrap-material.css">
+    <link rel="stylesheet" href="~/Dashboard/css/shreerang-material.css">
+    <link rel="stylesheet" href="~/Dashboard/css/uikit.css">
+    <link href="~/DataTables/datatables.min.css" rel="stylesheet" />
+    <!-- Libs -->
+    <link rel="stylesheet" href="~/Dashboard/libs/perfect-scrollbar/perfect-scrollbar.css">
+    <link href="~/Dashboard/libs/sweat-alerts/bootstrap-sweatalert.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Dashboard/libs/flot/flot.css">
+</head>
+<body>
+    <div class="page-loader">
+        <div class="bg-warning"></div>
+    </div>
+    <div class="layout-wrapper layout-2">
+        <div class="layout-inner">
+            <!-- [ Layout sidenav ] Start -->
+            <div id="layout-sidenav" class="layout-sidenav sidenav sidenav-vertical bg-white logo-dark">
+                <div class="app-brand demo">
+                    <span class="app-brand-logo demo">
+                        <img src="~/assets/img/RW/logo.jpg" height="50" width="50" alt="Brand Logo" class="img-fluid rounded-circle">
+                    </span>
+                    <a asp-controller="UserDashboard" asp-action="Index" class="app-brand-text demo sidenav-text font-weight-normal ml-2">RW Foundation</a>
+                    <a href="javascript:" class="layout-sidenav-toggle sidenav-link text-large ml-auto">
+                        <i class="ion ion-md-menu align-middle"></i>
+                    </a>
+                </div>
+                <div class="sidenav-divider mt-0"></div>
+
+                <!-- Links -->
+                <ul class="sidenav-inner py-1">
+
+                    <!-- Dashboards -->
+                    <li class="sidenav-item active">
+                        <a asp-controller="UserDashboard" asp-action="Index" class="sidenav-link">
+                            <i class="sidenav-icon feather icon-home text-success"></i>
+                            <div>Dashboards</div>
+                        </a>
+                    </li>
+
+                    <!-- Layouts -->
+                    <li class="sidenav-divider mb-1"></li>
+                    @if (User.IsInRole("Admin") && CompanyId == 1)
+                    {
+                        <li class="sidenav-item">
+                            <a href="javascript:" class="sidenav-link sidenav-toggle">
+                                <i class="sidenav-icon feather icon-cpu text-warning"></i>
+                                <div>Authentication</div>
+                            </a>
+                            <ul class="sidenav-menu">
+                                <li class="sidenav-item">
+                                    <a asp-controller="Authentication" asp-action="SignUp" class="sidenav-link">
+                                        <div>Register New User</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a asp-action="ListRoles" asp-controller="UserDashboard" class="sidenav-link">
+                                        <div>Assign Role</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a asp-controller="UserDashboard" asp-action="UserList" class="sidenav-link">
+                                        <div>User List</div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li class="sidenav-item">
+                            <a href="javascript:" class="sidenav-link sidenav-toggle">
+                                <i class="sidenav-icon feather icon-box text-danger"></i>
+                                <div>Master</div>
+                            </a>
+                            <ul class="sidenav-menu">
+                                <li class="sidenav-item">
+                                    <a asp-controller="Item" asp-action="Index" class="sidenav-link">
+                                        <div>Items</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a asp-controller="Package" asp-action="Index" class="sidenav-link">
+                                        <div>Packages</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a asp-controller="Package" asp-action="PackageItemsList" class="sidenav-link">
+                                        <div>Package Items</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidenav-item">
+                            <a href="javascript:" class="sidenav-link sidenav-toggle">
+                                <i class="sidenav-icon feather icon-box text-danger"></i>
+                                <div>Beneficiaries</div>
+                            </a>
+                            <ul class="sidenav-menu">
+                                <li class="sidenav-item">
+                                    <a asp-controller="GroceryKit" asp-action="GroceryKitForm" class="sidenav-link">
+                                        <div>Beneficiary Form</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a asp-controller="GroceryKit" asp-action="Index" class="sidenav-link">
+                                        <div>Beneficiaries List</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a asp-controller="Admin" asp-action="GetBeneficiaryAppeal" class="sidenav-link">
+                                        <div>Beneficiaries Appeal</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    }
+                    else if (User.IsInRole("Admin") && CompanyId == 2)
+                    {
+                        <li class="sidenav-item">
+                            <a href="javascript:" class="sidenav-link sidenav-toggle">
+                                <i class="sidenav-icon feather icon-box text-danger"></i>
+                                <div>Beneficiaries</div>
+                            </a>
+                            <ul class="sidenav-menu">
+                                <li class="sidenav-item">
+                                    <a asp-controller="GroceryKit" asp-action="GroceryKitForm" class="sidenav-link">
+                                        <div>Beneficiary Form</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a asp-controller="GroceryKit" asp-action="Index" class="sidenav-link">
+                                        <div>Beneficiaries List</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a asp-controller="Admin" asp-action="GetBeneficiaryAppeal" class="sidenav-link">
+                                        <div>Beneficiaries Appeal</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    }
+                    else if (User.IsInRole("Donor"))
+                    {
+                        <li class="sidenav-item">
+                            <a href="javascript:" class="sidenav-link sidenav-toggle">
+                                <i class="sidenav-icon feather icon-box text-danger"></i>
+                                <div>Beneficiaries</div>
+                            </a>
+                            <ul class="sidenav-menu">
+                                <li class="sidenav-item">
+                                    <a asp-controller="Donors" asp-action="Index" class="sidenav-link">
+                                        <div>Beneficiary List</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidenav-item">
+                            <a asp-controller="Donors" asp-action="RequestForBeneficiary" class="sidenav-link">
+                                <i class="sidenav-icon fa fa-archive text-danger"></i>
+                                <div>Request For Beneficiary</div>
+                            </a>
+                        </li>
+                        <li class="sidenav-item">
+                            <a asp-controller="Donors" asp-action="DonorSponsorList" class="sidenav-link">
+                                <i class="sidenav-icon fa fa-list text-danger"></i>
+                                <div>Sponsored Beneficiary</div>
+                            </a>
+                        </li>
+                    }
+                    else if (User.IsInRole("Beneficiary"))
+                    {
+                        <li class="sidenav-item">
+                            <a href="javascript:" class="sidenav-link sidenav-toggle">
+                                <i class="sidenav-icon feather icon-box text-danger"></i>
+                                <div>Beneficiary</div>
+                            </a>
+                            <ul class="sidenav-menu">
+                                <li class="sidenav-item">
+                                    <a asp-controller="GroceryKit" asp-action="GroceryKitForm" class="sidenav-link">
+                                        <i class="sidenav-icon feather icon-user-plus text-info"></i>
+                                        <div>Add Your Application</div>
+                                    </a>
+                                </li>
+                                <li class="sidenav-item">
+                                    <a asp-controller="UserDashboard" asp-action="ProfileBeneficiary" asp-route-id="@UserId" class="sidenav-link">
+                                        <i class="sidenav-icon feather icon-eye text-info"></i>
+                                        <div>View Profile</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="sidenav-item">
+                            <a href="javascript:" class="sidenav-link sidenav-toggle">
+                                <i class="sidenav-icon feather icon-box text-danger"></i>
+                                <div>Profile</div>
+                            </a>
+                        </li>
+                    }
+
+                    <!-- UI elements -->
+                    <!-- Forms & Tables -->
+                    <li class="sidenav-divider mb-1"></li>
+
+                </ul>
+            </div>
+            <!-- [ Layout sidenav ] End -->
+            <!-- [ Layout container ] Start -->
+            <div class="layout-container">
+                <!-- [ Layout navbar ( Header ) ] Start -->
+                <nav class="layout-navbar navbar navbar-expand-lg align-items-lg-center bg-dark container-p-x" id="layout-navbar">
+
+                    <!-- Brand demo (see assets/css/demo/demo.css) -->
+                    <a href="index.html" class="navbar-brand app-brand demo d-lg-none py-0 mr-4">
+                        <span class="app-brand-logo demo">
+                            <img src="~/assets/img/RW/logo.jpg" height="50" width="50" alt="Brand Logo" class="img-fluid">
+                        </span>
+                        <span class="app-brand-text demo font-weight-normal ml-2">RW Foundation</span>
+                    </a>
+
+                    <!-- Sidenav toggle (see assets/css/demo/demo.css) -->
+                    <div class="layout-sidenav-toggle navbar-nav d-lg-none align-items-lg-center mr-auto">
+                        <a class="nav-item nav-link px-0 mr-lg-4" href="javascript:">
+                            <i class="ion ion-md-menu text-large align-middle"></i>
+                        </a>
+                    </div>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#layout-navbar-collapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="navbar-collapse collapse" id="layout-navbar-collapse">
+                        <!-- Divider -->
+                        <hr class="d-lg-none w-100 my-2">
+
+                        <div class="navbar-nav align-items-lg-center">
+
+                        </div>
+
+                        <div class="navbar-nav align-items-lg-center ml-auto">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                @if (User.IsInRole("Admin"))
+                                {
+
+                                    <div class="demo-navbar-notifications nav-item dropdown mr-lg-3">
+                                        <a class="nav-link dropdown-toggle hide-arrow" href="#" data-toggle="dropdown" id="requestify">
+                                            <i class="feather icon-bell navbar-icon align-middle"></i>
+                                            <span class="badge badge-success  indicator" id="reqcount"></span>
+                                            <span class="d-lg-none align-middle">&nbsp; Requests</span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <div class="bg-warning text-center text-white font-weight-bold p-3">
+                                                <span id="requestcount"></span> New Donor Requests
+                                            </div>
+                                            <div id="contentrequest" style="height: 300px; overflow-y: scroll;">
+
+                                            </div>
+                                            <a asp-controller="Admin" asp-action="GetAllRequests" class="d-block text-center text-light small p-2 my-1">Show all Requests</a>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="nav-item d-none d-lg-block text-big font-weight-light line-height-1 opacity-25 mr-3 ml-1">|</div>
+                                <div class="demo-navbar-user nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                                        <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
+                                            <img src="~/Dashboard/img/form-user.png" alt="" class="d-block ui-w-30 rounded-circle">
+                                            <span class="px-1 mr-lg-2 ml-2 ml-lg-0">@UserName</span>
+                                        </span>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        @if (User.IsInRole("Donor"))
+                                        {
+                                            <a asp-controller="Donors" asp-action="DonorProfile" asp-route-id="@UserId" class="dropdown-item">
+                                                <i class="feather icon-user text-muted"></i> &nbsp; My profile
+                                            </a>
+                                        }
+                                        <div class="dropdown-divider"></div>
+                                        <form class="form-inline" method="post" asp-controller="Authentication" asp-action="Logout">
+                                            <button type="submit" class="btn btn-sm text-danger ml-2"><i class="icofont-logout mr-1"></i> Logout</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </nav>
+                <!-- [ Layout navbar ( Header ) ] End -->
+                <!-- [ Layout content ] Start -->
+                <div class="layout-content">
+
+                    <!-- [ content ] Start -->
+
+                    <div class="container-fluid flex-grow-1 container-p-y">
+                        <div>
+                            @RenderBody()
+                        </div>
+
+                    </div>
+                    <!-- [ content ] End -->
+                    <!-- [ Layout footer ] Start -->
+                    <nav class="layout-footer footer bg-white">
+                        <div class="container-fluid d-flex flex-wrap justify-content-between text-center container-p-x pb-3">
+                            <div class="pt-3">
+                                <span class="footer-text font-weight-semibold">&copy; <a href="http://www.nkutechnologies.com/" class="footer-link" target="_blank">NKU Technologies Pvt Ltd.</a></span>
+                            </div>
+                            <div>
+                                <a href="javascript:" class="footer-link pt-3">About Us</a>
+                                <a href="javascript:" class="footer-link pt-3 ml-4">Help</a>
+                                <a href="javascript:" class="footer-link pt-3 ml-4">Contact</a>
+                                <a href="javascript:" class="footer-link pt-3 ml-4">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </nav>
+                    <!-- [ Layout footer ] End -->
+                </div>
+                <!-- [ Layout content ] Start -->
+            </div>
+            <!-- [ Layout container ] End -->
+        </div>
+        <!-- Overlay -->
+        <div class="layout-overlay layout-sidenav-toggle"></div>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/Dashboard/libs/popper/popper.js"></script>
+    <script src="~/Dashboard/js/bootstrap.js"></script>
+    <script src="~/lib/momentjs/moment.min.js"></script>
+    <script src="~/DataTables/datatables.min.js"></script>
+    <script src="~/lib/datetime-moment/datetime-moment.js"></script>
+    <script src="~/Dashboard/libs/alertifyjs/alertify.min.js"></script>
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
+    <script src="~/assets/js/GroceryKit.js?t=@DateTime.Now.Ticks"></script>
+    <script src="~/assets/js/UpdateGroceryKit.js?t=@DateTime.Now.Ticks"></script>
+    <script src="~/assets/js/User.js?t=@DateTime.Now.Ticks"></script>
+    <script src="~/assets/js/Donor.js?t=@DateTime.Now.Ticks"></script>
+    <script src="~/assets/js/Package.js?t=@DateTime.Now.Ticks"></script>
+    <script src="~/Dashboard/js/pace.js"></script>
+    <script src="~/Dashboard/js/sidenav.js"></script>
+    <script src="~/Dashboard/js/layout-helpers.js"></script>
+    <script src="~/Dashboard/js/material-ripple.js"></script>
+    <script src="~/Dashboard/libs/sweat-alerts/bootstrap-sweatalert.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script>
+    <!-- Libs -->
+    <script src="~/Dashboard/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="~/Dashboard/libs/eve/eve.js"></script>
+    <script src="~/Dashboard/libs/flot/flot.js"></script>
+    <script src="~/Dashboard/libs/flot/curvedLines.js"></script>
+    <script src="~/Dashboard/libs/chart-am4/core.js"></script>
+    <script src="~/Dashboard/libs/chart-am4/charts.js"></script>
+    <script src="~/Dashboard/libs/chart-am4/animated.js"></script>
+
+    <!-- Demo -->
+    <script src="~/Dashboard/js/demo.js"></script>
+    <script src="~/Dashboard/js/analytics.js"></script>
+    <script src="~/Dashboard/js/pages/dashboards_index.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

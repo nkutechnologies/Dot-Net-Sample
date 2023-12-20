@@ -1,0 +1,567 @@
+﻿@model RWFOUNDATIONWebsite.DataModels.Master.GroceryKit
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+   // double rating = ViewBag.ratings;
+}
+
+
+<div class="row">
+    <div class="col-xl-4">
+        <!-- Side info -->
+        <div class="card mb-4">
+            <div class="d-flex card-body">
+                <div class="media">
+                    @if (Model.ImageUrl == null)
+                    {
+                        <img src="~/assets/img/RW/userimage.png" alt=""  class="ui-w-60 rounded-circle">
+                    }
+                    else
+                    {
+                        <img src="~/Images/MainPhoto/@Model.ImageUrl"  alt="" class="ui-w-60 rounded-circle">
+                    }
+
+                    <div class="media-body pt-2 ml-1">
+                        <div class="row no-gutters">
+                            <div class="d-flex col flex-column text-dark">
+                                <h5 class="mb-2">@Model.FirstName @Model.LastName</h5>
+                                <div class="text-muted small">Form#@Model.FormNo</div>
+                            </div>
+                            <div class="d-flex col flex-column text-dark px-2">
+                                <div class="d-flex">
+                                    @for (int i = 1; i <= 10; i++)
+                                    {                                        
+                                        if (i <= Math.Floor(Model.Rating)) {
+                                            <i class="fa fa-star text-warning"></i>
+                                        }
+                                        else if (i > Math.Ceiling(Model.Rating)) {
+                                               <i class="far fa-star text-warning"></i>
+                                        }
+                                        else {                                            
+                                             <i class="fa fa-star-half text-warning"></i>
+                                        }                                       
+                                    }                                   
+                                </div>                                                            
+                               
+                                <i class="float-xl-right">Rating:@Model.Rating</i>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <hr class="border-light m-0">
+            <div class="card-body">
+                <div class="mb-2">
+                    <span class="text-muted">Birthday:</span> @Model.DateOfBirth.ToString("dd MMM yyyy");
+                </div>
+                <div class="mb-2">
+                    <span class="text-muted">City:</span> @Model.City.CityName
+
+                </div>
+                <div class="mb-2">
+                    <span class="text-muted">Gender:</span> @Model.Gender
+                </div>
+                <div class="mb-2">
+                    <span class="text-muted">Occupation:</span> @Model.Occupation.OccupationName
+                </div>
+                <div class="mb-4">
+                    <span class="text-muted">Phone:</span> @Model.PhoneNumber1 & @Model.PhoneNumber2
+                </div>
+                <div class="text-muted">
+                    @Model.Address
+                </div>
+            </div>
+        </div>
+        <!-- / Side info -->
+        <!-- family members -->
+        <div class="card mb-4">
+            <div class="card-header">Family Members</div>
+            <div class="card-body">
+                @foreach (var item in Model.FamilyMembers)
+                {
+                    <div class="media align-items-center pb-1 mb-3">
+                        <div class="media-body ml-3">
+                            <a href="javascript:void(0)" class="text-dark">@item.Name</a>
+                            <div class="text-muted small">@item.FamilyMemberStatus.FamilyMemberStatusName</div>
+                        </div>
+                        <p class="btn btn-sm btn-default md-btn-flat d-block">@item.Relation.RelationName</p>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- / family members -->    
+        <div class="card mb-4">
+            <div class="card-header">Other Documents</div>
+            <div class="card-body">
+                @if (Model.OtherDocument1Url != null)
+                {
+                    <div class="card bg-success text-white ui-hover-icon mb-4 bg-pattern-3">
+                        <div class="card-body text-center">
+                            <h4>@Model.OtherDocumentName1</h4>
+                            <a href="~/Images/OtherDocuments/@Model.OtherDocument1Url" class='pdfbutton text-center text-white font-weight-bolder float-right' title="View Document"><i class='feather icon-eye' aria-hidden='true'></i> View</a>
+                        </div>
+                    </div>
+                }               
+                @if (Model.OtherDocument2Url != null)
+                {
+                    <div class="card bg-success text-white ui-hover-icon mb-4 bg-pattern-3">
+                        <div class="card-body text-center">
+                            <h4>@Model.OtherDocumentName2</h4>
+                            <a href="~/Images/OtherDocuments/@Model.OtherDocument2Url" class='pdfbutton text-center text-white font-weight-bolder float-right' title="View Document"><i class='feather icon-eye' aria-hidden='true'></i> View</a>
+                        </div>
+                    </div>
+                }              
+
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <!-- Info -->
+        <div class="card mb-4">
+            <div class="row no-gutters row-bordered ui-bordered text-center">
+                <a href="javascript:void(0)" class="d-flex col flex-column text-dark py-3">
+                    <div class="font-weight-bold">@Model.FamilySize</div>
+                    <div class="text-muted small">Family Size</div>
+                </a>
+                <a href="javascript:void(0)" class="d-flex col flex-column text-dark py-3">
+                    <div class="font-weight-bold">@Convert.ToInt32(Model.ShortFallInCash)</div>
+                    <div class="text-muted small">Short Fall</div>
+                </a>
+                <a href="javascript:void(0)" class="d-flex col flex-column text-dark py-3">
+                    <div class="font-weight-bold">@Model.Age</div>
+                    <div class="text-muted small">Age</div>
+                </a>
+                <a href="javascript:void(0)" class="d-flex col flex-column text-dark py-3">
+                    <div class="font-weight-bold">@Model.CurrentStatus.CurrentStatusName</div>
+                    <div class="text-muted small">Status</div>
+                </a>
+                <a href="javascript:void(0)" class="d-flex col flex-column text-dark py-3">
+                    <div class="font-weight-bold">@Model.ResidenceStatus</div>
+                    <div class="text-muted small">House</div>
+                </a>
+                <a href="javascript:void(0)" class="d-flex col flex-column text-white bg-success py-3">
+                    <div class="font-weight-bolder">Recommended</div>
+                </a>
+            </div>
+            <div class="row no-gutters row-bordered ui-bordered text-center">
+                <a href="javascript:void(0)" class="d-flex col flex-column text-dark py-3">
+                    <div class="font-weight-bold">@Model.MedicalProb.MedicalProbName</div>
+                    <div class="text-muted small">Medical Problems</div>
+                </a>
+            </div>
+        </div>
+        <!-- / Info -->
+        <!-- Posts -->
+
+        <div class="card mb-4">
+            <div class="card-header">Expenses & Earnings</div>
+            <div class="card-body">
+                <div class="row p-0">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 border-right">
+                        <p class="text-danger">Expenses</p>
+                        <table class="table table-sm">
+                            <tr class="row-height">
+                                <td>Food Cost</td>
+                                <td>Rs.@Convert.ToInt32(Model.FoodCost)</td>
+                            </tr>
+                            <tr class="row-height">
+                                <td>House Rent</td>
+                                <td>Rs.@Convert.ToInt32(Model.HouseRent)</td>
+                            </tr>
+                            <tr class="row-height">
+                                <td>School Cost</td>
+                                <td>Rs.@Convert.ToInt32(Model.SchoolCost)</td>
+                            </tr>
+                            <tr class="row-height">
+                                <td>Utilities Cost</td>
+                                <td>Rs.@Convert.ToInt32(Model.UtilitiesCost)</td>
+                            </tr>
+                            <tr class="row-height">
+                                <td>Medical Cost</td>
+                                <td>Rs.@Convert.ToInt32(Model.MedicalCost)</td>
+                            </tr>
+                            <tr class="row-height">
+                                <td>Other Cost</td>
+                                <td>Rs.@Convert.ToInt32(Model.OtherCost)</td>
+                            </tr>
+                            <tr class="text-dark row-height">
+                                <td class="font-weight-bold">Total Cost</td>
+                                <td class="font-weight-bold">Rs.@Convert.ToInt32(Model.TotalCost)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <p class="text-success">Earnings</p>
+                        <table class="table table-sm">
+                            <tr class="row-height">
+                                <td>Salary</td>
+                                <td>Rs.@Convert.ToInt32(Model.Salary)</td>
+                            </tr>
+                            <tr class="row-height">
+                                <td>Donations</td>
+                                <td>Rs.@Convert.ToInt32(Model.Donations)</td>
+                            </tr>
+                            <tr class="row-height">
+                                <td>Other Income</td>
+                                <td>Rs.@Convert.ToInt32(Model.OtherIncome)</td>
+                            </tr>
+                            <tr class="row-height">
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="row-height">
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="row-height">
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr class="row-height">
+                                <td class="font-weight-bold">Total Income</td>
+                                <td class="font-weight-bold">Rs.@Convert.ToInt32(Model.TotalIncome)</td>
+                            </tr>
+                        </table>                       
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <h5 class="d-inline-block ">
+                    @if (Model.ShortFallInCash > 0)
+                    {
+                        <small class="align-middle text-danger"><strong class="text-dark">Short Fall In Cash:</strong>  Rs. @Convert.ToInt32(Model.ShortFallInCash)</small>
+                    }
+                    else
+                    {
+                        <small class="align-middle text-success"><strong class="text-dark">Short Fall In Cash:</strong>  Rs. @Convert.ToInt32(Model.ShortFallInCash)</small>
+                    }
+
+                </h5>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">CNIC</div>
+            <div class="card-body">
+                <div class="row p-1">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <img src="~/Images/CNIC/@Model.CNICFrontUrl" height="150" width="250" alt="cnic front" />
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <img src="~/Images/CNIC/@Model.CNICBackUrl" height="150" width="250" alt="cnic back" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4" id="detailsdocument">
+            <div class="card-header">Documents Attached</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                @if (Model.DisabilityCertificateUrl != null)
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">Disability Certificate</h5>
+                                                    <h6 class="mb-0 text-success">Uploaded</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                    <a href="~/Images/DisabilityCertificate/@Model.DisabilityCertificateUrl" class='pdfbutton text-center text-warning font-weight-bolder float-right' title="View Disability Certificate"> <i class='feather icon-eye' aria-hidden='true'></i> View</a>
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-check pt-badge bg-success font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">Disability Certificate</h5>
+                                                    <h6 class="mb-0 text-danger">Not Uploaded yet!</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-x pt-badge bg-danger font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+
+
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                @if (Model.DeathCertificateUrl != null)
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">Death Certificate</h5>
+                                                    <h6 class="mb-0 text-success">Uploaded</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                    <a href="~/Images/DeathCertificate/@Model.DeathCertificateUrl" class='pdfbutton text-center text-warning font-weight-bolder float-right' title="View Death Certificate"> <i class='feather icon-eye' aria-hidden='true'></i> View</a>
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-check pt-badge bg-success font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">Death Certificate</h5>
+                                                    <h6 class="mb-0 text-danger">Not Uploaded yet!</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-x pt-badge bg-danger font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                @if (Model.BFormUrl != null)
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">B-FORM</h5>
+                                                    <h6 class="mb-0 text-success">Uploaded</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                    <a href="~/Images/B-FORM/@Model.BFormUrl" class='pdfbutton text-center text-warning font-weight-bolder float-right' title="View B-Form"> <i class='feather icon-eye' aria-hidden='true'></i> View</a>
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-check pt-badge bg-success font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">B-FORM</h5>
+                                                    <h6 class="mb-0 text-danger">Not Uploaded yet!</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-x pt-badge bg-danger font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                @if (Model.ElectricityBill != null)
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">Electricity Bill</h5>
+                                                    <h6 class="mb-0 text-success">Uploaded</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                    <a href="~/Images/ElectricityBill/@Model.ElectricityBill" class='pdfbutton text-center text-warning font-weight-bolder float-right' title="View Electricity Bill"> <i class='feather icon-eye' aria-hidden='true'></i> View</a>
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-check pt-badge bg-success font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">Electricity Bill</h5>
+                                                    <h6 class="mb-0 text-danger">Not Uploaded yet!</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-x pt-badge bg-danger font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                @if (Model.PtclBillUrl != null)
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">PTCL Bill</h5>
+                                                    <h6 class="mb-0 text-success">Uploaded</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                    <a href="~/Images/PTCLBILL/@Model.PtclBillUrl" class='pdfbutton text-center text-warning font-weight-bolder float-right' title="View PTCL Bill"> <i class='feather icon-eye' aria-hidden='true'></i> View</a>
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-check pt-badge bg-success font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">PTCL Bill</h5>
+                                                    <h6 class="mb-0 text-danger">Not Uploaded yet!</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-x pt-badge bg-danger font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                @if (Model.ApplicationUrl != null)
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">Application</h5>
+                                                    <h6 class="mb-0 text-success">Uploaded</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                    <a href="~/Images/Applications/@Model.ApplicationUrl" class='pdfbutton text-center text-warning font-weight-bolder float-right' title="View Application"> <i class='feather icon-eye' aria-hidden='true'></i> View</a>
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-check pt-badge bg-success font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="card mb-4 ui-proj mb-4">
+                                        <div class="card-body">
+                                            <div class="row align-items-center mb-3">
+                                                <div class="col p-l-0">
+                                                    <h5 class="mb-1 f-w-700">Application</h5>
+                                                    <h6 class="mb-0 text-danger">Not Uploaded yet!</h6>
+                                                </div>
+                                            </div>
+                                            <div class="row align-items-center text-center">
+                                                <div class="col">
+                                                </div>
+                                                <div class="col">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                            <i class="feather icon-x pt-badge bg-danger font-weight-bolder bg-pattern-2"></i>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4" id="media">
+            <div class="card-header">Beneficiary Appeal</div>
+            <div class="card-body">
+                <div class="row d-flex no-gutters">
+                    <div class="d-flex col flex-column text-dark">
+                        @if (Model.VideoUrl != null)
+                        {
+                            <video height="200" controls src="~/Images/Videos/@Model.VideoUrl" typeof="video/mp4"></video>
+                        }
+                        else
+                        {
+                            <video height="200" controls src="" typeof="video/mp4"></video>
+                        }
+                    </div>
+                    <div class="d-flex col flex-column text-dark px-2">
+                        @if (Model.AudioUrl != null)
+                        {
+                            <audio controls class="mt-5">
+                                <source src="~/Images/Audios/@Model.AudioUrl" type="audio/mp3">
+                            </audio>
+                        }
+                        else
+                        {
+                            <audio controls class="mt-5">
+                                <source src="" type="audio/mp3">
+                            </audio>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

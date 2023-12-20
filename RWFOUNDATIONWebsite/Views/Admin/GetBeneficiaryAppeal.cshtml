@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BeneficiaryAppealViewModel>
+@{
+    ViewData["Title"] = "GetBeneficiaryAppeal";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@if (Model.Any())
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="media">
+                            @if (String.IsNullOrEmpty(item.PhotoUrl))
+                            {
+                                <img src="~/assets/img/RW/userimage.png"  class="d-block ui-w-60 rounded-circle" alt="">
+                            }
+                            else
+                            {
+                                <img src="~/Images/MainPhoto/@item.PhotoUrl"  class="d-block ui-w-60 rounded-circle" alt="">
+                            }
+                            <div class="media-body ml-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        @item.BeneficiaryFirtName  @item.BeneficiaryLastName
+                                        <div class="text-muted small"><i class="fa fa-phone mr-1"></i>@item.PhoneNumber1  @item.PhoneNumber2</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <span class="text-danger">Form#@item.BeneficiayFormNo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="social-video-1" class="w-100 plyr__video-wrapper plyr__video-embed plyr--setup">
+                            <video height="200" width="300" id="playvideo" class="" controls src="~/Images/Videos/@item.VideoUrl" typeof="video/mp4"></video>
+                            <audio controls class="mt-3" id="playaudio">
+                                <source src="~/Images/Audios/@item.AudioUrl" type="audio/mp3">
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*@if (!String.IsNullOrEmpty(item.VideoUrl) || !String.IsNullOrEmpty(item.AudioUrl))
+            {
+
+            }*@
+        }
+    </div>
+}
+else
+{
+    <div class="card bg-white border-0">
+
+        <div class="card-body px-lg-5 py-lg-5">
+            <h5 class="card-title"> There is no any Beneficiary Appeal yet!</h5>           
+        </div>
+
+    </div>
+}
+

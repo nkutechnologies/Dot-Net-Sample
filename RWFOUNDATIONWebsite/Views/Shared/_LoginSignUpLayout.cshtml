@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/assets/img/RW/logo.jpg" rel="icon">
+    <link href="~/assets/img/RW/logo.jpg" rel="apple-touch-icon">
+    <link rel="stylesheet" href="~/Dashboard/fonts/fontawesome.css">
+    <link rel="stylesheet" href="~/Dashboard/fonts/ionicons.css">
+    <link rel="stylesheet" href="~/Dashboard/fonts/linearicons.css">
+    <link rel="stylesheet" href="~/Dashboard/fonts/open-iconic.css">
+    <link rel="stylesheet" href="~/Dashboard/fonts/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="~/Dashboard/fonts/feather.css">
+    <link href="~/Dashboard/libs/alertifyjs/css/alertify.min.css" rel="stylesheet" />
+    @*<link href="~/Dashboard/libs/alertifyjs/css/themes/semantic.min.css" rel="stylesheet" />*@
+    <link href="~/Dashboard/libs/alertifyjs/css/themes/bootstrap.min.css" rel="stylesheet" />
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="~/Dashboard/css/bootstrap-material.css">
+    <link rel="stylesheet" href="~/Dashboard/css/shreerang-material.css">
+    <link rel="stylesheet" href="~/Dashboard/css/uikit.css">
+    <link href="~/DataTables/datatables.min.css" rel="stylesheet" />
+    <!-- Libs -->
+    <link rel="stylesheet" href="~/Dashboard/libs/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="~/Dashboard/libs/flot/flot.css">
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/Dashboard/libs/popper/popper.js"></script>
+    <script src="~/Dashboard/js/bootstrap.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

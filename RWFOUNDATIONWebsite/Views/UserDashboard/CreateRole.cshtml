@@ -1,0 +1,37 @@
+﻿@model RWFOUNDATIONWebsite.ViewModels.CreateRoleViewModel
+@{
+    ViewData["Title"] = "CreateRole";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+   
+<section class="createrole" id="createrole">
+    <div class="container">
+        <form asp-controller="UserDashboard" asp-action="CreateRole" method="post" class="shadow-lg p-4 " enctype="multipart/form-data">
+
+            <div class="row">
+                <div class="col-12">
+                    <h2>Create Role</h2>
+                </div>
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <label class="text-dark">Name</label>
+            <div class="form-group">
+                <div class="input-wrap">                   
+                    <input asp-for="Name" class="form-control" placeholder="Role Name" type="text">
+                </div>
+            </div>            
+            <span asp-validation-for="Name" class="text-danger"></span>
+            <button type="submit" class="btn btn-warning text-white mt-3 ">Create Role</button>
+            <a asp-controller="UserDashboard" asp-action="ListRoles" class="btn btn-light mt-3 ">Cancel</a>
+
+        </form>
+
+    </div>
+
+
+</section>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

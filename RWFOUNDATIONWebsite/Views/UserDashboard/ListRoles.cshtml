@@ -1,0 +1,70 @@
+﻿@model IEnumerable<RWFOUNDATIONWebsite.DataModels.UserManagement.ApplicationRole>
+@{
+    ViewData["Title"] = "ListRoles";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+
+@if (Model.Any())
+{ 
+    <div class="card border-0">
+        <div class="card-header bg-white pb-2">
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-8">
+                    <div class="text-muted text-left">
+                        <h4 class="card-title">List Of All Roles</h4>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+                    <a asp-controller="UserDashboard" asp-action="CreateRole" class="btn btn-warning text-white float-right">New</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body px-lg-5 py-lg-5 shadow">
+            <table class="table  bg-light table-hover">
+                <thead class="text-white bg-warning">
+                    <tr>
+                        <th width="10%">Role Id</th>
+                        <th width="70%">Occupation</th>
+                        <th width="20%">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td width="10%">@item.Id</td>
+                            <td width="70%">@item.Name</td>
+                            <td width="20%" class="d-inline-flex">
+                                <a asp-controller="UserDashboard" asp-action="UpdateRole" title="Update" asp-route-Id="@item.Id" class="btn btn-sm btn-dark mr-1 text bg-warning border-0"> <i class="feather icon-edit-2 text-white"></i></a>
+                                <a asp-controller="UserDashboard" asp-action="Delete" title="Delete" asp-route-Id="@item.Id" class="btn btn-sm btn-dark mr-1 bg-danger border-0"><i class="feather icon-trash-2 text-white"></i></a>
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+}
+else
+{
+<div class="card bg-white shadow border-0 mb-2">
+    <div class="card-header bg-white pb-4">
+        <div class="text-muted text-left">
+            <h4 class="card-title text-success">There is No Any Role have Created yet!!!</h4>
+        </div>
+    </div>
+    <div class="card-body px-lg-5 py-lg-5 shadow">
+        <h5 class="card-title">Are you want to create new Role click here..</h5>
+    </div>
+    <div class="card-footer bg-white">
+        <a asp-controller="UserDashboard" asp-action="CreateRole" class="btn btn-info">Create Role</a>
+    </div>
+</div>
+}
+

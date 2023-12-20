@@ -1,0 +1,67 @@
+﻿@model IEnumerable<RWFOUNDATIONWebsite.DataModels.Donors.DonorSponcer>
+@{
+    ViewData["Title"] = "DonorSponsorList";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    var totalfamilies = Model.Count();
+}
+
+@if (Model.Any())
+{
+
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <div class="text-muted text-left">
+                        <h4 class="card-title">Sponsored Beneficiaries</h4>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <div class="card-datatable table-responsive">
+            <div class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                <div class="col-sm-12">
+                    <table class="table table-striped table-bordered dataTable no-footer" role="grid">
+                        <thead>
+                            <tr role="row">
+                                <th class="sorting" tabindex="0" rowspan="1" colspan="1">Form No</th>
+                                <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1">Name</th>
+                                <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1">Age</th>
+                                <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1">Family Size</th>
+                                <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1">Rating</th>
+                                <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1">Medical Probs</th>
+                                <th class="sorting_desc" tabindex="0" rowspan="1" colspan="1">Status</th>
+                                <th class="sorting" tabindex="0" rowspan="1" colspan="1">Short Fall</th>
+                                <th class="sorting" tabindex="0" rowspan="1" colspan="1">Zakat Eligible</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr role="row" class="odd">
+                                    <td class="py-2 align-middle sorting_1">@item.GroceryKit.FormNo</td>
+                                    <td class="py-2 align-middle text-danger">@item.GroceryKit.FirstName @item.GroceryKit.LastName</td>
+                                    <td class="py-2 align-middle">@item.GroceryKit.Age</td>
+                                    <td class="py-2 align-middle">@item.GroceryKit.FamilySize</td>
+                                    <td class="py-2 align-middle">@item.GroceryKit.Rating / 10</td>
+                                    <td class="py-2 align-middle">@item.GroceryKit.MedicalProb.MedicalProbName</td>
+                                    <td class="py-2 align-middle">@item.GroceryKit.CurrentStatus.CurrentStatusName</td>
+                                    <td class="py-2 align-middle">@item.GroceryKit.ShortFallInCash</td>
+                                    <td class="py-2 align-middle">@item.GroceryKit.ZakatAcceptable</td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p class="mt-5 text-danger">There is no Sposored Beneficiary Yet</p>
+}
+

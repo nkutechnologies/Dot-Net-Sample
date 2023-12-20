@@ -1,0 +1,116 @@
+﻿@model IEnumerable<RWFOUNDATIONWebsite.DataModels.Donors.DonorRequestForBeneficiary>
+@{
+    ViewData["Title"] = "GetAllRequests";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";   
+}
+
+@if (Model.Any())
+{
+    <div class="container-fluid flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold p-3 mb-0 bg-white">Donor Requests For Beneficiary Data</h4>      
+        <div class="card">
+            <div class="card-datatable table-responsive">
+                <div class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer">
+                    <div class="row p-2">                   
+                        <div class="col-sm-12">
+                            <table id="Request_list_tbl" class="table table-striped table-bordered dataTable no-footer" role="grid">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_desc" tabindex="0" aria-controls="Request_list_tbl" rowspan="1" colspan="1" aria-label="Donor: activate to sort column ascending" aria-sort="descending" style="width: 92px;">Donor</th>
+                                        <th class="sorting" tabindex="0" aria-controls="Request_list_tbl" rowspan="1" colspan="1" aria-label="Donate: activate to sort column ascending" style="width: 265px;">Donate</th>
+                                        <th class="sorting" tabindex="0" aria-controls="Request_list_tbl" rowspan="1" colspan="1" aria-label="Amount: activate to sort column ascending" style="width: 158px;">Amount</th>
+                                        <th class="sorting" tabindex="0" aria-controls="Request_list_tbl" rowspan="1" colspan="1" aria-label="Members: activate to sort column ascending" style="width: 170px;">Members</th>
+                                        <th class="sorting" tabindex="0" aria-controls="Request_list_tbl" rowspan="1" colspan="1" aria-label="Recieved: activate to sort column ascending" style="width: 170px;">Recieved</th>
+                                        <th class="sorting" tabindex="0" aria-controls="Request_list_tbl" rowspan="1" colspan="1" aria-label="Beneficiary: activate to sort column ascending" style="width: 137px;">Beneficiary Type</th>
+                                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 133px;">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr role="row" class="odd">
+                                        <td class="align-middle sorting_1">@item.ApplicationUser.UserName</td>
+                                        <td class="align-middle">@item.DonationType.Title</td>
+                                        <td class="align-middle">@item.ExpectedDonation</td>
+                                        <td class="align-middle">
+                                            @foreach (var m in item.FamilyMemberForDonors)
+                                            {
+                                                @if (item.FamilyMemberForDonors.Count == 1)
+                                                {
+                                                    <span>@m.FamilyMember </span>
+                                                }
+                                                else
+                                                {
+                                                    <span>@m.FamilyMember, </span>
+                                                }
+
+                                            }
+                                        </td>
+                                        <td class="align-middle">
+                                            @{
+                                                var d = DateTime.Now.ToLocalTime();
+                                                var ds = item.CreatedOn.ToLocalTime();
+                                                var cre = ds.AddHours(-5);
+                                                var span = d - cre;
+                                                if (span.Days > 365)
+                                                {
+                                                    var years = (span.Days / 365);
+                                                    if (span.Days % 365 != 0)
+                                                        years += 1;
+                                                    <span>@years @(years == 1 ? "year" : "years") ago</span>
+                                                }
+                                                else if (span.Days > 30)
+                                                {
+                                                    var months = (span.Days / 30);
+                                                    if (span.Days % 31 != 0)
+                                                        months += 1;
+                                                    <span>@months @(months == 1 ? "month" : "months") ago</span>
+                                                }
+                                                else if (span.Days > 0)
+                                                {
+                                                    <span>@span.Days @(span.Days == 1 ? "day" : "days") ago</span>
+                                                }
+                                                else if (span.Hours > 0)
+                                                {
+                                                    <span>@span.Hours @(span.Hours == 1 ? "hour" : "hours") ago</span>
+                                                }
+                                                else if (span.Minutes > 0)
+                                                {
+                                                    <span>@span.Minutes @(span.Minutes == 1 ? "minute" : "minutes") ago</span>
+                                                }
+                                                else if (span.Seconds > 5)
+                                                {
+                                                    <span>@span.Seconds seconds ago</span>
+                                                }
+                                                else
+                                                {
+                                                     <span>5 seconds ago</span>
+                                                }
+                                            }
+                                        </td>
+                                        @if (item.BeneficiaryType == "Auto")
+                                        {
+                                            <td class="align-middle"><span class="badge badge-primary">@item.BeneficiaryType</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td class="align-middle"><span class="badge badge-success">@item.BeneficiaryType</span></td>
+                                        }
+
+                                        <td class="align-middle"><span class="badge badge-warning">Pending</span></td>
+                                    </tr>
+                                    }
+
+</table>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+}
+

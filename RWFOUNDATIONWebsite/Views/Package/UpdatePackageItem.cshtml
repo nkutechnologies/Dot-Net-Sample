@@ -1,0 +1,185 @@
+﻿@model RWFOUNDATIONWebsite.DataModels.Packages.PackageDetail
+@{
+    ViewData["Title"] = "UpdatePackageItem";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+    <section class="main-section bg-light">
+        <div class="container">
+            <div class="appointment-wrap bg-white p-4 p-md-5  align-items-center">
+                <form id="PackageItemsupdate" class="pb-3" enctype="multipart/form-data">
+                    <h3>Update Package</h3>
+                    <input type="hidden" value="@Model.PackageDetailId" id="packagedetailid" />
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label class="text-dark">Package Category</label>
+                            <div class="form-group">
+                                <div class="form-field">
+                                    <div class="select-wrap">
+                                        <select name="packageupdate" id="packageupdate" asp-for="PackageId" class="form-control" asp-items="ViewBag.packages">
+                                            <option data-id="">Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="text-dark">Package Name</label>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" id="packagenameupdate" name="packagenameupdate" value="@Model.PackageDetailName" class="form-control" placeholder="Enter Package Name">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="text-dark">Total Family Member</label>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" id="totalfamilymemberupdate" name="totalfamilymemberupdate" value="@Model.TotalFamilyMember" class="form-control" placeholder="Enter Package Name">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="text-dark">Package Value(PKR)</label>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="number" id="valuepkrupdate" name="valuepkrupdate" value="@Model.PackageValuePKR" class="form-control" disabled>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="text-dark">Package Value(SR)</label>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="number" id="valuesrupdate" name="valuesrupdate" value="@Model.PackageValueSR" class="form-control" disabled>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="text-dark">Package Value(USD)</label>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="number" id="valueusdupdate" name="valueusdupdate" value="@Model.PackageValueUSD" class="form-control" disabled>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <h5 class="text-dark font-weight-bold text-danger">Package Items Details</h5>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 align-items-center">
+                            <a onclick="AddNewItemupdate()" class="btn btn-sm bg-warning float-right text-white "><i class="icofont-plus text-white mr-1"></i>Add New Item</a>
+                            <table class="table table-light" id="packageitemtblupdate">
+                                <thead class="bg-warning text-white">
+                                    <tr class="text-center">
+                                        <th>Item</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    @foreach (var item in Model.PackageItems)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <div class="form-field">
+                                                    <div class="select-wrap">
+                                                        <select name="itemupdate"  asp-for="@item.ItemId" class="form-control itemsupdate" asp-items="ViewBag.items">
+                                                            <option data-id="">Select</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="input-wrap">
+                                                        <input type="number" name="priceupdate"  value="@item.Item.Price" class="form-control text-right priceupdate" disabled>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="input-wrap">
+                                                        <input type="number" min="0" name="quantityupdate"  value="@item.PackageQuantity" class="form-control text-right quantityupdate">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="input-wrap">
+                                                        <input type="number"  value="0" class="form-control text-right totalupdate" disabled>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><a title="Delete Row" onclick="deleteitemRowupdate(this)" class="btn btn-sm bg-danger border-0 text-white float-right"><i class="feather icon-trash-2"></i></a></td>
+                                        </tr>
+                                    }
+                                    <tr class="itemsampleRowupdate" style="display: none" id="itemsampleRowupdate">
+                                        <td>
+                                            <div class="form-field">
+                                                <div class="select-wrap">
+                                                    <select name="itemupdate" id="itemupdate" class="form-control itemsupdate" asp-items="ViewBag.items">
+                                                        <option data-id="">Select</option>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-wrap">
+                                                    <input type="number" name="priceupdate" id="priceupdate" value="0" class="form-control text-right priceupdate" disabled>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-wrap">
+                                                    <input type="number" min="0" name="quantityupdate" id="quantityupdate" value="0" class="form-control text-right quantityupdate">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <div class="input-wrap">
+                                                    <input type="number" id="totalupdate" value="0" class="form-control text-right totalupdate" disabled>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><a title="Delete Row" onclick="deleteitemRowupdate(this)" class="btn btn-sm bg-danger border-0 text-white float-right"><i class="feather icon-trash-2"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="m-0">
+                                <div class="row">
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-6"></div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
+                                        <h5 class="float-right">Total(<span class="text-primary font-weight-bolder" id="totalvalueupdate">0</span>)</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" mt-2 d-flex">
+                        <button type="submit" class="btn btn-success float-right">
+                            <span class="spinner-border spinner-border-sm d-none" id="spinneritemupdate" role="status"></span>
+                            Update
+                        </button>
+                        <a asp-action="PackageItemsList" asp-controller="Package" class="btn btn-light float-right text-dark">                           
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+

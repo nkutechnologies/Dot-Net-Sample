@@ -1,0 +1,37 @@
+﻿@model PackageCRUPDlViewModel
+@{
+    ViewData["Title"] = "UpdatePackage";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<section class="item" id="item">
+    <div class="container">
+        <form asp-controller="Package" asp-action="UpdatePackage" method="post" class="shadow p-4">
+
+            <div class="row">
+                <div class="col-12">
+                    <h2>Update Item</h2>
+                </div>
+            </div>
+            <input type="hidden" asp-for="PackageId" />
+            <label class="text-dark">Name</label>
+            <div class="form-group">
+                <div class="input-wrap">
+                    <input asp-for="PackageName" class="form-control" placeholder="Enter Name" type="text">
+                </div>
+            </div>
+            <span asp-validation-for="PackageName" class="text-danger"></span>
+            <button type="submit" class="btn btn-warning text-white mt-3 ">Update</button>
+            <a asp-controller="Package" asp-action="Index" class="btn btn-light mt-3 ">Cancel</a>
+
+        </form>
+
+    </div>
+
+
+</section>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

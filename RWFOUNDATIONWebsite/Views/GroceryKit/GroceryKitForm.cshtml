@@ -1,0 +1,1866 @@
+﻿@model RWFOUNDATIONWebsite.DataModels.SaveAsDrafts.BeneficiaryFormSaveAsDraft
+@{
+    ViewData["Title"] = "GroceryKitForm";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    string already = ViewBag.alreadyadded;
+}
+
+
+@if (already != null)
+{
+    <div class="contianer mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="p-4 p-sm-5">
+                        <div class="display-1 lnr lnr-cross-circle text-center text-danger mb-4"></div>
+                        <p class="text-center text-big mb-4">@already</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    if (Model != null)
+    {
+        <section class="main-section  bg-light">
+            <div class="container">
+                <div class="appointment-wrap bg-white p-4 p-md-5  align-items-center">
+                    <form id="grocerykitform" class="appointment-form" enctype="multipart/form-data">
+                        <h3>Application for Grocery Kit</h3>
+                        <input hidden id="grocerykitId" value="@Model.GroceryKitId" />
+                        <input hidden id="existingimageurl" asp-for="@Model.ImageUrl" />
+                        <input hidden id="existingcnicfronturl" asp-for="@Model.CNICFrontUrl" />
+                        <input hidden id="existingcnicbackurl" asp-for="@Model.CNICBackUrl" />
+                        <input hidden id="existingdisabilityurl" asp-for="@Model.DisabilityCertificateUrl" />
+                        <input hidden id="existingdeathurl" asp-for="@Model.DeathCertificateUrl" />
+                        <input hidden id="existingbformurl" asp-for="@Model.BFormUrl" />
+                        <input hidden id="existingelectricityurl" asp-for="@Model.ElectricityBill" />
+                        <input hidden id="existingptclurl" asp-for="@Model.PtclBillUrl" />
+                        <input hidden id="existingappurl" asp-for="@Model.ApplicationUrl" />
+                        <input hidden id="existingotherdoc1url" asp-for="@Model.OtherDocument1Url" />
+                        <input hidden id="existingotherdoc2url" asp-for="@Model.OtherDocument2Url" />
+                        <input hidden id="existingvideo" asp-for="@Model.VideoUrl" />
+                        <input hidden id="existingaudio" asp-for="@Model.AudioUrl" />
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">First Name(پہلا  نام)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="firstname" name="firstname" class="form-control" value="@Model.FirstName" placeholder="First Name">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Last Name(آخری  نام)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="lastname" name="lastname" class="form-control" value="@Model.LastName" placeholder="Last Name">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Father/Husband Name(باپ  یا  خاوند کا  نام)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="fatherorhusbandname" name="fatherorhusbandname" value="@Model.FatherOrHusbandName" class="form-control" placeholder="Father/ Husband Name">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">Medical Probs( بیماری )</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="medicalprob" id="medicalprob" class="form-control" asp-for="@Model.MedicalProbId" asp-items="ViewBag.MedicalProb">
+                                                <option data-id="" disabled>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Phone Number 1(1 فون  نمبر)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="phonenumber1" name="phonenumber1" value="@Model.PhoneNumber1" class="form-control" placeholder="(92) 333 0000000">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Phone Number 2(2 فون  نمبر)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="phonenumber2" name="phonenumber2" value="@Model.PhoneNumber2" class="form-control" placeholder="(92) 333 0000000">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">CNIC( شناختی کارڈ نمبر)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="cnic" name="cnic" class="form-control" value="@Model.CNIC" maxlength="15" placeholder="35202-0001110-0">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Old Form No(پرانے فارم کا نمبر)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="oldformno" name="oldformno" value="@Model.OldFormNo" class="form-control" placeholder="Enter Old Form Number">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label class="text-dark">Merital Status(ازدواجی حیثیت)</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select id="meritalstatus" name="meritalstatus" asp-for="@Model.MeritalStatus" class="form-control">
+                                                <option value="Married">Married</option>
+                                                <option value="Single">Single</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">Current Status(موجود حالت)</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="currentstatus" id="currentstatus" asp-for="@Model.CurrentStatusId" class="form-control" asp-items="ViewBag.CurrentStatus">
+                                                <option data-id="" disabled>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Gender</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="gender" id="gender" asp-for="@Model.Gender" class="form-control">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Shemale">Shemale</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Residence Status</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="residencestatus" id="residencestatus" asp-for="@Model.ResidenceStatus" class="form-control">
+                                                <option value="Rented">Rented</option>
+                                                <option value="Own">Own</option>
+                                                <option value="Others">Others</option>
+                                                <option value="Homeless">Homeless</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">Occupation</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="occupation" id="occupation" asp-for="@Model.OccupationId" class="form-control" asp-items="ViewBag.Occupation">
+                                                <option data-id="" disabled>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Province</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="province" id="province" asp-for="@Model.ProvinceId" class="form-control" asp-items="ViewBag.Province">
+                                                <option data-id="" disabled>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">City</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="city" id="city" asp-for="@Model.CityId" class="form-control" asp-items="ViewBag.City">
+                                                <option data-id="" disabled>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">Update Photo</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="file" id="photo" name="photo" class="form-control" placeholder="Add Photo">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Date Of Birth?</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="date" id="dateofbirth" name="dateofbirth" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")" class="form-control" placeholder="Date Of Birth" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Address</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="address" name="address" value="@Model.Address" class="form-control" placeholder="Address">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                @if (Model.ImageUrl != null)
+                                {
+                                    <img src="~/DraftImages/Draft_MainPhoto/@Model.ImageUrl" height="150" width="150" alt="Alternate Text" />
+                                }
+                                else
+                                {
+                                    <img src="~/assets/img/RW/userimage.png" height="150" width="150" alt="Alternate Text" />
+                                }
+
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h5 class="text-dark font-weight-bold text-danger">Family Members Details</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 align-items-center">
+                                <a onclick="AddNewRow()" class="btn btn-sm bg-warning float-right text-white "><i class="icofont-plus text-white mr-1"></i>Add New Member</a>
+                                <table class="table table-light" id="GroceryKitTbl">
+                                    <thead class="bg-warning text-white">
+                                        <tr class="text-center">
+                                            <th>Name</th>
+                                            <th>Relation</th>
+                                            <th>Age</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        @foreach (var item in Model.FamilyMembers)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-wrap">
+                                                            <input type="text" value="@item.Name" class="form-control" placeholder="Name">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-field">
+                                                        <div class="select-wrap">
+                                                            <select name="relationupdate" class="form-control" asp-items="ViewBag.Relations" asp-for="@item.RelationId">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <div class="input-wrap">
+                                                            <input type="number" value="@item.Age" class="form-control" placeholder="Age">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-field">
+                                                        <div class="select-wrap">
+                                                            <select class="form-control" asp-items="ViewBag.FamilyMemberStatus" asp-for="@item.FamilyMemberStatusId">
+                                                                <option data-id="" disabled>Select</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td><a title="Delete Row" onclick="deleteRow(this)" class="btn btn-sm bg-danger border-0 text-white"><i class="feather icon-trash-2"></i></a></td>
+                                            </tr>
+                                        }
+                                        <tr class="sampleRow" style="display: none" id="row">
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="input-wrap">
+                                                        <input type="text" id="familymembername" class="form-control" placeholder="Name">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-field">
+                                                    <div class="select-wrap">
+                                                        <select name="relation" id="relation" class="form-control" asp-items="ViewBag.Relations">
+                                                            <option data-id="" disabled>Select</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="input-wrap">
+                                                        <input type="number" id="familymemberage" value="0" class="form-control" placeholder="Age">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-field">
+                                                    <div class="select-wrap">
+                                                        <select name="familymemberstatus" id="familymemberstatus" class="form-control" asp-items="ViewBag.FamilyMemberStatus">
+                                                            <option data-id="" disabled>Select</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><a title="Delete Row" onclick="deleteRow(this)" class="btn btn-sm bg-danger border-0 text-white"><i class="feather icon-trash-2"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3 mb-3">
+                            <h5 class="text-dark font-weight-bold text-danger">Short Fall In Cash Calculator</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Food Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="foodcost" class="form-control" value="@Model.FoodCost" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">House Rent:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="houserent" value="@Model.HouseRent" class="form-control" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">School Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="schoolcost" value="@Model.SchoolCost" class="form-control" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Utilities Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="utilitiescost" value="@Model.UtilitiesCost" class="form-control" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Medical Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="medicalcost" value="@Model.MedicalCost" class="form-control" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Other Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="othercost" value="@Model.OtherCost" class="form-control" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bolder">Total Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="totalcost" value="@Model.TotalCost" class="form-control" placeholder="00.00" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Family Size:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="familysize" value="@Model.FamilySize" class="form-control" placeholder="Total No Of Family Member" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Salary:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="salary" value="@Model.Salary" class="form-control" placeholder="00.00" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Donations:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="donations" value="@Model.Donations" class="form-control" placeholder="00.00" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Other Income:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="otherincome" value="@Model.OtherCost" class="form-control" placeholder="00.00" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bolder">Total income:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="totalincome" value="@Model.TotalIncome" class="form-control" placeholder="00.00" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="font-weight-bolder text-danger">Short Fall In Cash</label>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-6 col-6">
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="number" id="shortfallcash" value="@Model.ShortFallInCash" class="form-control" placeholder="000.000" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h5 class="text-dark font-weight-bold text-danger">Attach Multiple Documents Here</h5>
+                        </div>
+                        <div class="">
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload CNIC Front" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="CNICFRONT" class="form-control" placeholder="Upload CNIC Front">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="cnicviewfront" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View CNIC Front"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload CNIC Back" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="CNICBACK" class="form-control" placeholder="Upload CNIC Back">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="cnicviewback" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View CNIC Back"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload Disability Certificate" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="disabilitycertificate" class="form-control documentview" placeholder="Disability Certificate" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="disabilitycertificateview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Disability Certificate"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+
+                                                <input class="form-control" value="Upload Death Certificate" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+
+                                                <input type="file" id="deathcertificate" class="form-control documentview" placeholder="Death Certificate" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="deathcertificateview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Death Certificate"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload B-FORM" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="bform" class="form-control documentview" placeholder="Upload B-FORM" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="bformview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View B-FORM"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload Electricity Bill" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="electricitybill" class="form-control documentview" placeholder="Upload Electricity Bill" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="electricitybillview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Electricity Bill"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <div class="icon"><span class="ion-usb"></span></div>
+                                                <input class="form-control" value="Upload PTCL Bill" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="ptclbill" class="form-control documentview" placeholder="Upload PTCL Bill" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="ptclbillview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View PTCL Bill"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload Application" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="application" class="form-control documentview" placeholder="Upload Application" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="applicationview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Application"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-2">
+                            <h5 class="text-dark font-weight-bold text-danger">Attach Other Documents</h5>
+                        </div>
+                        <div class="">
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="text" id="otherdocumentname" class="form-control" placeholder="Enter Document Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="OtherDocument" class="form-control otherdocumentview" placeholder="Attach Other Document" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="otherdocumentview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Document"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="text" id="otherdocument2name" class="form-control" placeholder="Enter Document Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="OtherDocument2" class="form-control otherdocumentview" placeholder="Attach Other Document" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="otherdocumentview2" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Document"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="text-center mt-2">
+                            <h5 class="text-dark font-weight-bold text-danger">Beneficiary Appeal(Audio or Video)</h5>
+                        </div>
+                        <div class="">
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="text" id="VideoName" class="form-control" value="Upload Video">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="video" class="form-control " accept="video/mp4">
+                                            </div>
+                                        </div>
+                                        <span class="text-success" id="videosize"></span>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="text" id="AudioName" class="form-control" value="Upload Audio">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="audio" class="form-control " accept="audio/mp3">
+                                            </div>
+                                        </div>
+                                        <span class="text-success" id="audiosize"></span>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <video height="200" id="playvideo" class="d-none" controls src="" typeof="video/mp4"></video>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <audio controls class="mt-5 d-none" id="playaudio">
+                                            <source src="" type="audio/mp3">
+                                        </audio>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <video height="200" id="playvideoupdate" controls src="~/DraftImages/Draft_Videos/@Model.VideoUrl" typeof="video/mp4"></video>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <audio controls class="mt-5" id="playaudioupdate">
+                                            <source src="~/DraftImages/Draft_Audios/@Model.AudioUrl" type="audio/mp3">
+                                        </audio>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" mt-2 mb-3">
+                            <div class="row">
+                                <div class="col-6"> <label class="text-dark font-weight-bolder float-left">Tell Your Story</label></div>
+                                <div class="col-6"> <label class="text-dark font-weight-bolder float-right">اپنے احوال بیان کریں</label></div>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="" id="remarks" cols="30" rows="3" asp-for="@Model.Remarks" class="form-control" placeholder="Remarks"></textarea>
+                            </div>
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-8"> <p class="text-primary float-left">Are You Eligible For Zakat?(کیا آپ زکوٰۃ کیلے مستحق ہیں)</p></div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            @if (Model.ZakatAcceptable == "Yes")
+                                            {
+                                                <label class="custom-control custom-radio">
+                                                    <input name="custom-radio-3" type="radio" id="yes" value="Yes" class="custom-control-input" checked>
+                                                    <span class="custom-control-label">Yes</span>
+                                                </label>
+                                                <label class="custom-control custom-radio ml-4">
+                                                    <input name="custom-radio-3" type="radio" id="no" value="No" class="custom-control-input">
+                                                    <span class="custom-control-label">No</span>
+                                                </label>
+                                            }
+                                            else
+                                            {
+                                                <label class="custom-control custom-radio">
+                                                    <input name="custom-radio-3" type="radio" id="yes" value="Yes" class="custom-control-input">
+                                                    <span class="custom-control-label">Yes</span>
+                                                </label>
+                                                <label class="custom-control custom-radio ml-4">
+                                                    <input name="custom-radio-3" type="radio" id="no" value="No" class="custom-control-input" checked>
+                                                    <span class="custom-control-label">No</span>
+                                                </label>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="d-flex float-right mb-3">
+                                <button type="button" onclick="saveasdraft()" class="btn btn-light py-3 float-right px-4 text-dark">
+                                    <span class="spinner-border spinner-border-sm d-none" id="spinnersave" role="status"></span>
+                                    Save
+                                </button>
+                                <button type="submit" id="buttonhover" class="btn btn-success float-right ml-2 py-3 px-4">
+                                    <span class="spinner-border spinner-border-sm d-none" id="spinnerload" role="status"></span>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    }
+    else
+    {
+        <section class="main-section  bg-light">
+            <div class="container">
+                <div class="appointment-wrap bg-white p-4 p-md-5  align-items-center">
+                    <form id="grocerykitform" class="appointment-form" enctype="multipart/form-data">
+                        <h3>Application for Grocery Kit</h3>                       
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">First Name(پہلا  نام)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="firstname" name="firstname" class="form-control"  placeholder="First Name">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Last Name(آخری  نام)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="lastname" name="lastname" class="form-control"  placeholder="Last Name">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Father/Husband Name(باپ  یا  خاوند کا  نام)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="fatherorhusbandname" name="fatherorhusbandname"  class="form-control" placeholder="Father/ Husband Name">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">Medical Probs( بیماری )</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="medicalprob" id="medicalprob" class="form-control"  asp-items="ViewBag.MedicalProb">
+                                                <option data-id="" disabled>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Phone Number 1(1 فون  نمبر)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="phonenumber1" name="phonenumber1"  class="form-control" placeholder="(92) 333 0000000">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Phone Number 2(2 فون  نمبر)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="phonenumber2" name="phonenumber2"  class="form-control" placeholder="(92) 333 0000000">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">CNIC( شناختی کارڈ نمبر)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="cnic" name="cnic" class="form-control"  maxlength="15" placeholder="35202-0001110-0">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Old Form No(پرانے فارم کا نمبر)</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="oldformno" name="oldformno"  class="form-control" placeholder="Enter Old Form Number">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label class="text-dark">Merital Status(ازدواجی حیثیت)</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select id="meritalstatus" name="meritalstatus"  class="form-control">
+                                                <option value="Married">Married</option>
+                                                <option value="Single">Single</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">Current Status(موجود حالت)</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="currentstatus" id="currentstatus"  class="form-control" asp-items="ViewBag.CurrentStatus">
+                                                <option data-id="" disabled>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Gender</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="gender" id="gender"  class="form-control">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Shemale">Shemale</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Residence Status</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="residencestatus" id="residencestatus"  class="form-control">
+                                                <option value="Rented">Rented</option>
+                                                <option value="Own">Own</option>
+                                                <option value="Others">Others</option>
+                                                <option value="Homeless">Homeless</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">Occupation</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="occupation" id="occupation"  class="form-control" asp-items="ViewBag.Occupation">
+                                                <option data-id="" disabled>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Province</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="province" id="province"  class="form-control" asp-items="ViewBag.Province">
+                                                <option data-id="" disabled>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">City</label>
+                                <div class="form-group">
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <select name="city" id="city" class="form-control" asp-items="ViewBag.City">
+                                                <option data-id="" disabled>Select</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label class="text-dark">Add Photo</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="file" id="photo" name="photo" class="form-control" placeholder="Add Photo">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Date Of Birth?</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="date" id="dateofbirth" name="dateofbirth"  class="form-control" placeholder="Date Of Birth" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <label class="text-dark">Address</label>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" id="address" name="address"  class="form-control" placeholder="Address">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h5 class="text-dark font-weight-bold text-danger">Family Members Details</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 align-items-center">
+                                <a onclick="AddNewRow()" class="btn btn-sm bg-warning float-right text-white "><i class="icofont-plus text-white mr-1"></i>Add New Member</a>
+                                <table class="table table-light" id="GroceryKitTbl">
+                                    <thead class="bg-warning text-white">
+                                        <tr class="text-center">
+                                            <th>Name</th>
+                                            <th>Relation</th>
+                                            <th>Age</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">                                       
+                                        <tr class="sampleRow" style="display: none" id="row">
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="input-wrap">
+                                                        <input type="text" id="familymembername" class="form-control" placeholder="Name">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-field">
+                                                    <div class="select-wrap">
+                                                        <select name="relation" id="relation" class="form-control" asp-items="ViewBag.Relations">
+                                                            <option data-id="" disabled>Select</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <div class="input-wrap">
+                                                        <input type="number" id="familymemberage" value="0" class="form-control" placeholder="Age">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-field">
+                                                    <div class="select-wrap">
+                                                        <select name="familymemberstatus" id="familymemberstatus" class="form-control" asp-items="ViewBag.FamilyMemberStatus">
+                                                            <option data-id="" disabled>Select</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td><a title="Delete Row" onclick="deleteRow(this)" class="btn btn-sm bg-danger border-0 text-white"><i class="feather icon-trash-2"></i></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3 mb-3">
+                            <h5 class="text-dark font-weight-bold text-danger">Short Fall In Cash Calculator</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Food Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="foodcost" class="form-control" value="0" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">House Rent:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="houserent" value="0" class="form-control" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">School Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="schoolcost" value="0" class="form-control" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Utilities Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="utilitiescost" value="0" class="form-control" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Medical Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="medicalcost" value="0" class="form-control" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Other Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="othercost" value="0" class="form-control" placeholder="00.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bolder">Total Cost:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="totalcost" value="0" class="form-control" placeholder="00.00" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Family Size:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="familysize" value="1" class="form-control" placeholder="Total No Of Family Member" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Salary:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="salary" value="0" class="form-control" placeholder="00.00" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Donations:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="donations" value="0" class="form-control" placeholder="00.00" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bold">Other Income:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="otherincome" value="0" class="form-control" placeholder="00.00" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-5 col-5">
+                                        <label class="text-dark font-weight-bolder">Total income:</label>
+                                    </div>
+                                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-7 col-7">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="totalincome" value="0" class="form-control" placeholder="00.00" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                <label class="font-weight-bolder text-danger">Short Fall In Cash</label>
+                            </div>
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-6 col-6">
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="number" id="shortfallcash" value="0" class="form-control" placeholder="000.000" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h5 class="text-dark font-weight-bold text-danger">Attach Multiple Documents Here</h5>
+                        </div>
+                        <div class="">
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-6">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload CNIC Front" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="CNICFRONT" class="form-control" placeholder="Upload CNIC Front">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="cnicviewfront" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View CNIC Front"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload CNIC Back" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="CNICBACK" class="form-control" placeholder="Upload CNIC Back">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="cnicviewback" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View CNIC Back"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload Disability Certificate" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="disabilitycertificate" class="form-control documentview" placeholder="Disability Certificate" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="disabilitycertificateview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Disability Certificate"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+
+                                                <input class="form-control" value="Upload Death Certificate" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+
+                                                <input type="file" id="deathcertificate" class="form-control documentview" placeholder="Death Certificate" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="deathcertificateview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Death Certificate"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload B-FORM" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="bform" class="form-control documentview" placeholder="Upload B-FORM" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="bformview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View B-FORM"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload Electricity Bill" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="electricitybill" class="form-control documentview" placeholder="Upload Electricity Bill" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="electricitybillview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Electricity Bill"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <div class="icon"><span class="ion-usb"></span></div>
+                                                <input class="form-control" value="Upload PTCL Bill" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="ptclbill" class="form-control documentview" placeholder="Upload PTCL Bill" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="ptclbillview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View PTCL Bill"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input class="form-control" value="Upload Application" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="application" class="form-control documentview" placeholder="Upload Application" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="applicationview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Application"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-2">
+                            <h5 class="text-dark font-weight-bold text-danger">Attach Other Documents</h5>
+                        </div>
+                        <div class="">
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="text" id="otherdocumentname" class="form-control" placeholder="Enter Document Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="OtherDocument" class="form-control otherdocumentview" placeholder="Attach Other Document" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="otherdocumentview" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Document"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="text" id="otherdocument2name" class="form-control" placeholder="Enter Document Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-11 col-11">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="OtherDocument2" class="form-control otherdocumentview" placeholder="Attach Other Document" accept="application/pdf">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-1">
+                                        <a id="otherdocumentview2" data-id="" class='pdfbutton text-center text-warning font-weight-bolder' title="View Document"> <i class='feather icon-eye' aria-hidden='true'></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="text-center mt-2">
+                            <h5 class="text-dark font-weight-bold text-danger">Beneficiary Appeal(Audio or Video)</h5>
+                        </div>
+                        <div class="">
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" class="form-control" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="text" id="VideoName" class="form-control" value="Upload Video">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="video" class="form-control " accept="video/mp4">
+                                            </div>
+                                        </div>
+                                        <span class="text-success" id="videosize"></span>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="text" id="AudioName" class="form-control" value="Upload Audio">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="file" id="audio" class="form-control " accept="audio/mp3">
+                                            </div>
+                                        </div>
+                                        <span class="text-success" id="audiosize"></span>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <video height="200" id="playvideo" class="d-none" controls src="" typeof="video/mp4"></video>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                        <audio controls class="mt-5 d-none" id="playaudio">
+                                            <source src="" type="audio/mp3">
+                                        </audio>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" mt-2 mb-3">
+                            <div class="row">
+                                <div class="col-6"> <label class="text-dark font-weight-bolder float-left">Tell Your Story</label></div>
+                                <div class="col-6"> <label class="text-dark font-weight-bolder float-right">اپنے احوال بیان کریں</label></div>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea name="" id="remarks" cols="30" rows="3" class="form-control" placeholder="Remarks"></textarea>
+                            </div>
+                            <div class="">
+                                <div class="row">
+                                    <div class="col-8"> <p class="text-primary float-left">Are You Eligible For Zakat?(کیا آپ زکوٰۃ کیلے مستحق ہیں)</p></div>
+                                    <div class="col-4">
+                                        <div class="d-flex">
+                                            <label class="custom-control custom-radio">
+                                                <input name="custom-radio-3" type="radio" id="yes" value="Yes" class="custom-control-input" checked>
+                                                <span class="custom-control-label">Yes</span>
+                                            </label>
+                                            <label class="custom-control custom-radio ml-4">
+                                                <input name="custom-radio-3" type="radio" id="no" value="No" class="custom-control-input">
+                                                <span class="custom-control-label">No</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="d-flex float-right mb-3">
+                                <button type="button" onclick="saveasdraft()" class="btn btn-light py-3 float-right px-4 text-dark">
+                                    <span class="spinner-border spinner-border-sm d-none" id="spinnersave" role="status"></span>
+                                    Save
+                                </button>
+                                <button type="submit" id="buttonhover" class="btn btn-success float-right ml-2 py-3 px-4">
+                                    <span class="spinner-border spinner-border-sm d-none" id="spinnerload" role="status"></span>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    }
+
+    <div class="modal fade pdfm" id="PDFViewerModal" role="dialog" data-backdrop="false">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content" role="document">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title  text-warning">Document Preview</h4>
+                    <button type="button" class="close DP" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body p-0">
+                    <div id="PDFViewerDiv" style="height:633px;min-height:400px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+
+    <script>
+
+        function saveasdraft() {
+            $("#spinnersave").removeClass('d-none');
+            var formData = new FormData();
+            var formno = null;
+            var firstname = $('#firstname').val();
+            var lastname = $('#lastname').val();
+            var fatherorhusbandname = $('#fatherorhusbandname').val();
+            var address = $('#address').val();
+            var medicalprobId = $("#medicalprob option:selected").val();
+            var phonenumber1 = $('#phonenumber1').val();
+            var phonenumber2 = $('#phonenumber2').val();
+            var occupationId = $("#occupation option:selected").val();
+            var provinceId = $("#province option:selected").val();
+            var cityId = $("#city option:selected").val();
+            var meritalstatus = $("#meritalstatus option:selected").text();
+            var otherdocumentname = $("#otherdocumentname").val();
+            var otherdocument2name = $("#otherdocument2name").val();
+
+            var groceryKitId = $("#grocerykitId").val();
+            var existringImageUrl = $("#existingimageurl").val();
+            var existingcnicfronturl = $("#existingcnicfronturl").val();
+            var existingcnicbackurl = $("#existingcnicbackurl").val();
+            var existingdisabilityurl = $("#existingdisabilityurl").val();
+            var existingdeathurl = $("#existingdeathurl").val();
+            var existingbformurl = $("#existingbformurl").val();
+            var existingelectricityurl = $("#existingelectricityurl").val();
+            var existingptclurl = $("#existingptclurl").val();
+            var existingappurl = $("#existingappurl").val();
+            var existingotherdoc1url = $("#existingotherdoc1url").val();
+            var existingotherdoc2url = $("#existingotherdoc2url").val();
+            var existingvideourl = $("#existingvideo").val();
+            var existingaudiourl = $("#existingaudio").val();
+
+            //single photo upload
+            var fileUpload = $("#photo").get(0);
+            var files = fileUpload.files;
+            formData.append('photo', files[0]);
+
+            var fileUpload2 = $("#CNICFRONT").get(0);
+            var files2 = fileUpload2.files;
+            formData.append('cnicfront', files2[0]);
+
+            var fileUpload3 = $("#CNICBACK").get(0);
+            var files3 = fileUpload3.files;
+            formData.append('cnicback', files3[0]);
+
+            var fileUpload4 = $("#disabilitycertificate").get(0);
+            var files4 = fileUpload4.files;
+            formData.append('disabilitycertificate', files4[0]);
+
+            var fileUpload5 = $("#deathcertificate").get(0);
+            var files5 = fileUpload5.files;
+            formData.append('deathcertificate', files5[0]);
+
+            var fileUpload6 = $("#bform").get(0);
+            var files6 = fileUpload6.files;
+            formData.append('bform', files6[0]);
+
+            var fileUpload7 = $("#electricitybill").get(0);
+            var files7 = fileUpload7.files;
+            formData.append('electricitybill', files7[0]);
+
+            var fileUpload8 = $("#ptclbill").get(0);
+            var files8 = fileUpload8.files;
+            formData.append('ptclbill', files8[0]);
+
+            var fileUpload9 = $("#application").get(0);
+            var files9 = fileUpload9.files;
+            formData.append('application', files9[0]);
+
+            var fileUpload10 = $("#OtherDocument").get(0);
+            var files10 = fileUpload10.files;
+            formData.append('OtherDocument', files10[0]);
+
+            var fileUpload11 = $("#OtherDocument2").get(0);
+            var files11 = fileUpload11.files;
+            formData.append('OtherDocument2', files11[0]);
+
+            //upload video and audio file
+
+            var videofile = $("#video").get(0);
+            var files12 = videofile.files;
+            formData.append('video', files12[0]);
+
+            var audiofile = $("#audio").get(0);
+            var files13 = audiofile.files;
+            formData.append('audio', files13[0]);
+
+            var dateofbirth = $('#dateofbirth').val();
+            var oldformnumber = $('#oldformno').val();
+            var cnic = $('#cnic').val();
+            var currentstatusId = $("#currentstatus option:selected").val();
+            var gender = $("#gender option:selected").text();
+            var residencestatus = $("#residencestatus option:selected").text();
+            var familymembersdetails = getmemberSaveAsDraft();
+            var foodcost = $('#foodcost').val();
+            var houserent = $('#houserent').val();
+            var schoolcost = $('#schoolcost').val();
+            var utilitiescost = $('#utilitiescost').val();
+            var medicalcost = $('#medicalcost').val();
+            var othercost = $('#othercost').val();
+            var totalcost = $('#totalcost').val();
+            var familysize = $('#familysize').val();
+            var salary = $('#salary').val();
+            var donations = $('#donations').val();
+            var otherincome = $('#otherincome').val();
+            var totalincome = $('#totalincome').val();
+            var shortfallcash = $('#shortfallcash').val();
+            var remarks = $('#remarks').val();
+            var zakatacceptable = $("input[name='custom-radio-3']:checked").val();
+            var Grocerykit = {
+                GroceryKitId: groceryKitId,
+                ExistingPhotoUrl: existringImageUrl,
+                FormNo: formno,
+                FirstName: firstname,
+                LastName: lastname,
+                FatherOrHusbandName: fatherorhusbandname,
+                CityId: cityId,
+                ProvinceId: provinceId,
+                Address: address,
+                MeritalStatus: meritalstatus,
+                MedicalProbId: medicalprobId,
+                PhoneNumber1: phonenumber1,
+                PhoneNumber2: phonenumber2,
+                OccupationId: occupationId,
+                CurrentStatusId: currentstatusId,
+                ImageUrl: null,
+                DateOfBirth: dateofbirth,
+                OldFormNo: oldformnumber,
+                CNIC: cnic,
+                Gender: gender,
+                ResidenceStatus: residencestatus,
+                FamilyMembers: familymembersdetails,
+                FoodCost: foodcost,
+                HouseRent: houserent,
+                SchoolCost: schoolcost,
+                UtilitiesCost: utilitiescost,
+                MedicalCost: medicalcost,
+                OtherCost: othercost,
+                TotalCost: totalcost,
+                ZakatAcceptable: zakatacceptable,
+                FamilySize: familysize,
+                Salary: salary,
+                Donations: donations,
+                OtherIncome: otherincome,
+                TotalIncome: totalincome,
+                ShortFallInCash: shortfallcash,
+                Remarks: remarks,
+
+                CNICFrontUrl: existingcnicfronturl,
+                CNICBackUrl: existingcnicbackurl,
+                DisabilityCertificateUrl: existingdisabilityurl,
+                DeathCertificateUrl: existingdeathurl,
+                BFormUrl: existingbformurl,
+                ElectricityBill: existingelectricityurl,
+                PtclBillUrl: existingptclurl,
+                ApplicationUrl: existingappurl,
+                OtherDocument1Url: existingotherdoc1url,
+                OtherDocument2Url: existingotherdoc2url,
+                VideoUrl: existingvideourl,
+                AudioUrl: existingaudiourl,
+                OtherDocumentName1: otherdocumentname,
+                OtherDocumentName2: otherdocument2name
+            };
+            formData.append('model', JSON.stringify(Grocerykit));
+            $.ajax({
+                url: "/BeneficiarySaveAsDraft/SaveAsDraft",
+                type: 'POST',
+                datatype: "json",
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function (response) {
+                    $("#spinnersave").addClass('d-none');
+                    if (response.isError !== true) {
+                        alertify.success("Your Changes have been saved Successfuly");
+                    }
+                    else {
+                        alertify.error(response.message);
+                    }
+                },
+                error: function (response) {
+                    alertify.error(response.message);
+                }
+            });
+        }
+        function getmemberSaveAsDraft() {
+            var arrayDDetail = [];
+            var dDetail;
+            $('#GroceryKitTbl tbody tr').not(".sampleRow").each(function () {
+                dDetail = {
+                    Name: $(this).find('td:eq(0) input').val(),
+                    RelationId: $(this).find('td:eq(1) option:selected').val(),
+                    Age: $(this).find('td:eq(2) input').val(),
+                    FamilyMemberStatusId: $(this).find('td:eq(3) option:selected').val()
+                };
+                arrayDDetail.push(dDetail);
+
+            });
+            return arrayDDetail;
+        }
+    </script>
+}
+
+

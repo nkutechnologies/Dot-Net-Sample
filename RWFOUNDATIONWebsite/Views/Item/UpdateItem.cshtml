@@ -1,0 +1,73 @@
+﻿@model ItemCreateOrUpdateViewModel
+@{
+    ViewData["Title"] = "UpdateItem";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<section class="item" id="item">
+    <div class="container">
+        <form asp-controller="Item" asp-action="UpdateItem" method="post" class="shadow p-4">
+
+            <div class="row">
+                <div class="col-12">
+                    <h2>Update Item</h2>
+                </div>
+            </div>           
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <input type="hidden" asp-for="ItemId" />
+                    <label class="text-dark">Name(English)</label>
+                    <div class="form-group">
+                        <div class="input-wrap">
+                            <input asp-for="ItemName" class="form-control" placeholder="Enter Name" type="text">
+                        </div>
+                    </div>
+                    <span asp-validation-for="ItemName" class="text-danger"></span>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <label class="text-dark">Name(Urdu)</label>
+                    <div class="form-group">
+                        <div class="input-wrap">
+                            <input asp-for="ItemNameUrdu" class="form-control" placeholder="Enter Name" type="text">
+                        </div>
+                    </div>
+                    <span asp-validation-for="ItemNameUrdu" class="text-danger"></span>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <label class="text-dark">Price</label>
+                    <div class="form-group">
+                        <div class="input-wrap">
+                            <input asp-for="Price" class="form-control" placeholder="Enter Price" type="number">
+                        </div>
+                    </div>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                    <label class="text-dark">Unit</label>
+                    <div class="form-group">
+                        <div class="form-field">
+                            <div class="select-wrap">
+                                <select asp-for="UnitId" class="form-control" asp-items="ViewBag.units">
+                                    <option data-id="" disabled>Select</option>
+
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <span asp-validation-for="UnitId" class="text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-warning text-white mt-3 ">Update</button>
+            <a asp-controller="Item" asp-action="Index" class="btn btn-light mt-3 ">Cancel</a>
+
+        </form>
+
+    </div>
+
+
+</section>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+

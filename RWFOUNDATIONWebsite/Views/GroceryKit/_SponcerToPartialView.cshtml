@@ -1,0 +1,108 @@
+﻿@model IEnumerable<RWFOUNDATIONWebsite.ViewModels.DonorViewModels.DonorSponcerViewModel>
+
+@{ 
+    int totalfamilies = Model.Count();
+    decimal noofmonth = ViewBag.NoOfMonth;
+    decimal estimatedexpense = Model.Sum(x => x.Shortfallincash);
+    decimal estim = estimatedexpense * noofmonth;
+    var fromdate = DateTime.Now;
+    var todate = fromdate.AddDays(30);
+    
+}
+<form>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card mb-4 bg-warning text-white shadow">
+                <div class="card-body">
+                    <div class="text-center">
+                        <div class="text-white small">No Of Month</div>
+                        <div class="text-large font-weight-bold" id="Noofmonth">@ViewBag.NoOfMonth</div>
+                    </div>
+                </div>
+            </div>           
+        </div>
+        <div class="col-lg-3">
+            <div class="card mb-4 bg-primary text-white shadow">
+                <div class="card-body">
+                    <div class="text-center">
+                        <div class="text-white small">Total Families</div>
+                        <div class="text-large font-weight-bold" id="totalfam">@totalfamilies</div>
+                    </div>
+                </div>
+            </div>           
+        </div>        
+        <div class="col-lg-3">
+            <div class="card mb-4 bg-success text-white shadow">
+                <div class="card-body">
+                    <div class="text-center">
+                        <div class="text-white small">Estimated Expense</div>
+                        <div class="text-large font-weight-bold" id="estimated">@Convert.ToInt32(estim)</div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+        <div class="col-lg-3">
+            <div class="card mb-4 bg-white text-white shadow">
+                <div class="card-body">
+                    <div class="text-center">
+                        <div class="text-success small">Total Meals</div>
+                        <div class="text-large text-success font-weight-bold" id="meals">@Convert.ToDecimal(ViewBag.totalmeals)</div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12 align-items-center">
+            <table class="table table-light" id="grocerytblSponcer">
+                <thead class="bg-warning text-white">
+                    <tr class="text-center">                       
+                        <th>Name</th>
+                        <th>CNIC</th>
+                        <th>Status</th>
+                        <th>FamilySize</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    @foreach (var item in Model)
+                    {
+                        <tr class="text-center">
+                            <td class="d-none"><input value="@item.GroceryKitId" /></td>                           
+                            <td>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" value="@item.FirstName  @item.LastName" class="form-control text-center font-weight-bold" disabled>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" value="@item.CNIC" class="form-control text-center" placeholder="CNIC" disabled>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" value="@item.Status" class="form-control text-center" placeholder="CNIC" disabled>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="input-wrap">
+                                        <input type="text" value="@item.FamilySize" class="form-control text-center" placeholder="CNIC" disabled>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button type="button" onclick="SponceredFamilies()" class="btn btn-success">Sponsor</button>
+</form>

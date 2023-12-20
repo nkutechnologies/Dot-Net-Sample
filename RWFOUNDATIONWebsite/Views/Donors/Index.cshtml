@@ -1,0 +1,327 @@
+﻿@model IEnumerable<GroceryKitViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@if (Model.Any())
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="row mb-1">
+                <div class="col-12">
+                    <button type="button" id="alertnatecurrency" title="View in Alerternate Currency" class="btn btn-primary float-right" data-toggle="modal" data-target="#modals-slide">Alernate Currency</button>
+                </div>
+            </div>            
+            <div class="row no-gutters h-100 mb-4">
+                <div class="d-inline-block col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 align-items-center">
+                    <div class="card bg-sponsor text-white shadow ui-hover-icon bg-pattern-2">
+                        <div class="card-body p-1">
+                            <label class="text-white font-weight-bold">Select Package</label>
+                            <div class="form-group">
+                                <select class="custom-select text-dark bg-entry form-control-sm" id="packageId" asp-items="ViewBag.packages">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 align-items-center">
+                    <div class="card bg-sponsor text-white shadow ml-2 ui-hover-icon bg-pattern-2">
+                        <div class="card-body p-1">
+                            <label class="text-white font-weight-bold">No Of Month</label>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="number" id="noofmonth" min="1" step="1" name="noofmonth" class="form-control bg-entry text-dark" placeholder="No Of Month" value="1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 align-items-center">
+                    <div class="card bg-primary text-white shadow ml-2 ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h5 class="text-white">Total Families</h5>
+                            <p class="text-large font-weight-bold text-white" id="totalfamilies">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 align-items-center">
+                    <div class="card bg-white text-white shadow ml-2 ui-hover-icon bg-pattern-2-dark">
+                        <div class="card-body text-center p-1">
+                            <h5 class="text-success">Total Meals</h5>
+                            <p class="text-large font-weight-bold text-success" id="totalmeals">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 align-items-center">
+                    <div class="card bg-success text-white shadow ml-2 ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h5 class="text-white">Estimated Expense</h5>
+                            <p class="text-large font-weight-bold" id="estimatedexpense">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-xl-2 col-lg-2 col-md-4 col-sm-6 col-6 align-items-center">
+                    <div class="card bg-info text-white shadow ml-2 ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h5 class="text-white">Package Total</h5>
+                            <p class="text-large font-weight-bold" id="packagevalue">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters row-bordered row-border-light h-100">
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="divorcee">0</h2>
+                            <h6 class="mb-0">Divorcee</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="widows">0</h2>
+                            <h6 class="mb-0">Widows</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="disabled">0</h2>
+                            <h6 class="mb-0">Disabled</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="oldage">0</h2>
+                            <h6 class="mb-0">Old Age</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="deserving">0</h2>
+                            <h6 class="mb-0">Deserving</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="Orphans">0</h2>
+                            <h6 class="mb-0">Orphans</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters row-bordered row-border-light h-100">
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="divorceedependents">0</h2>
+                            <h6 class="mb-0">Dependents</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="widowsdependents">0</h2>
+                            <h6 class="mb-0">Dependents</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="disableddependents">0</h2>
+                            <h6 class="mb-0">Dependents</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="oldagedependents">0</h2>
+                            <h6 class="mb-0">Dependents</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="deservingdependents">0</h2>
+                            <h6 class="mb-0">Dependents</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-inline-block col-lg-2 align-items-center">
+                    <div class="card bg-sponsor text-white ui-hover-icon bg-pattern-2">
+                        <div class="card-body text-center p-1">
+                            <h2 class="font-weight-bold" id="orphansedependents">0</h2>
+                            <h6 class="mb-0">Dependents</h6>
+                            <i class="lnr lnr-users hov-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                    <a onclick="GetSponcersssFamilies()" id="sponcerbtn" class="btn btn-success text-white float-right d-none">Sponsor</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card border-0 p-1">       
+        <table class="table table-responsive table-striped table-bordered dataTable" role="grid" id="grocerkittablefordonor" width="100%">
+            <thead class="">
+                <tr>
+                    <th class="">
+                        <label class="custom-control custom-checkbox mb-0">
+                            <input type="checkbox" id="checkheaderSponcer" class="custom-control-input">
+                            <span class="custom-control-label"></span>
+                        </label>
+                    </th>
+                    <th>Form#</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Family Size</th>
+                    <th>Status</th>
+                    <th>House</th>
+                    <th>Medical Probs</th>
+                    <th>Zakat Eligible</th>
+                    <th>Rating</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+                        <td>
+                            <label class="custom-control custom-checkbox mb-0">
+                                <input type="checkbox" value="@item.GroceryKitId" class="custom-control-input">
+                                <span class="custom-control-label"></span>
+                            </label>
+                        </td>
+                        <td>@item.FormNo</td>
+                        <td class="text-primary">@item.FirstName  @item.LastName</td>
+                        <td>@item.Age</td>
+                        <td>@item.FamilySize</td>
+                        <td>@item.Status</td>
+                        <td>@item.ResidenceStatus</td>
+                        <td>@item.MedicalProb</td>
+                        <td>@item.ZakatAcceptable</td>
+                        <td class="text-danger">@item.Rating / <span class="text-success">10</span></td>
+                        <td class="d-inline-flex">
+                            <a asp-controller="GroceryKit" asp-action="Detail" title="Details" asp-route-Id="@item.GroceryKitId" class="btn btn-sm btn-light mr-1  border-0"> <i class="feather icon-list text-dark"></i></a>
+
+                        </td>
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+}
+else
+{
+    <div class="card bg-white border-0">
+
+        <div class="card-body px-lg-5 py-lg-5">
+            <h5 class="card-title"> There is No Beneficiary Assigned yet!!!!</h5>
+        </div>
+
+    </div>
+}
+
+<div id="modal_sponcergrocerykit" class="modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header  bg-warning">
+                <h5 class="modal-title text-white font-weight-bolder" id="modelSponserKitTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body" id="modalSponcerKitBody">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-slide fade show" id="modals-slide" style="display: none;" aria-modal="true">
+    <div class="modal-dialog">
+        <form class="modal-content">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+            <div class="modal-body">
+                <div class="card bg-pattern-3-dark mb-4">
+                    <div class="card-body text-center">
+                        <i class="fa fa-dollar-sign bg-success ui-rounded-icon"></i>
+                        <h4 class="mt-2"><span class="text-success"></span> Currency Converter</h4>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="text-info">Estimated Amount</label>
+                    <div class="form-group">
+                        <div class="input-wrap">
+                            <input type="number" id="amount" min="1" step="1" name="amount" class="form-control" value="25000">
+                        </div>
+                    </div>
+                </div>
+                <label class="text-dark">Select Currency</label>
+                <div class="form-group">
+                    <select class="custom-select">
+                        <option>USD</option>
+                        <option>EUR</option>
+                        <option>POND</option>
+                        <option>CAD</option>
+                        <option>SAR</option>
+                        <option>DHM</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary btn-block">Convert</button>
+
+                <div class="card mb-4 mt-2">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-auto pr-0">
+                                <i class="lnr lnr-diamond text-danger display-4"></i>
+                            </div>
+                            <div class="col text-right">
+                                <h5 class="text-danger mb-0">$532.3</h5>
+                                <p class="mb-0">Converted Amount</p>
+                            </div>
+                        </div>                       
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

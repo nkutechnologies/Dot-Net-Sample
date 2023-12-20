@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "UpdateSuccessforBeneficiary";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    int UserId = Convert.ToInt32(Context.Session.GetInt32("UserID"));
+}
+
+    <div class="contianer mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="p-4 p-sm-5">
+                        <div class="display-1 lnr lnr-checkmark-circle text-center text-success mb-4"></div>
+                        <p class="text-center text-big mb-4">Your Application have been Updated Successfuly.</p>
+                        <a asp-controller="UserDashboard" asp-action="ProfileBeneficiary" asp-route-id="@UserId" class="btn btn-glow-warning btn-warning btn-block">Proceed to view your Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

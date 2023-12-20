@@ -1,0 +1,193 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RW FOUNDATION</title>
+    <meta name="title" content="RW FOUNDATION ">
+    <meta name="description" content="RW Foundation is a foundation that established to help to poor needy people">
+    <meta name="keywords" content="RW FOUNDATION, rw foundation, RW , rw , foundation, Foundation RW FOUNDATION LAHORE, rw foundation lahore ,">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="language" content="English">
+    <!-- Favicons -->
+    <link href="~/assets/img/RW/logo.jpg" rel="icon">
+    <link href="~/assets/img/RW/logo.jpg" rel="apple-touch-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Muli:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="~/Dashboard/libs/alertifyjs/css/alertify.min.css" rel="stylesheet" />
+    <link href="~/assets/vendor/venobox/venobox.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <section id="topbar" class="d-none d-lg-block">
+        <div class="container d-flex">
+            <div class="contact-info mr-auto">
+                <i class="icofont-envelope"></i><a href="mailto:contact@example.com">info@rwfoundation.org</a>
+                <i class="icofont-phone"></i> +92 42 38914242
+            </div>
+            <div class="social-links">
+                <a href="https://twitter.com/rw_foundation" class="twitter"><i class="icofont-twitter"></i></a>
+                <a href="https://www.facebook.com/rwfound" class="facebook"><i class="icofont-facebook"></i></a>
+                <a href="https://www.instagram.com/rw.foundation/" class="instagram"><i class="icofont-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/UCt7VgTDFUTNvdi9-Meft81A/channels" class="youtube"><i class="icofont-youtube"></i></a>
+            </div>
+            <a asp-controller="Authentication" asp-action="Login" class="btn btn-sm bg-warning text-white ml-4">Login</a>
+            <a asp-controller="Authentication" asp-action="SignUp" class="btn btn-sm bg-warning text-white ml-4">Register As Beneficiary</a>
+            <a asp-controller="Authentication" asp-action="DonorRegister" class="btn btn-sm bg-warning text-white ml-4">Register As Donor</a>
+
+        </div>
+    </section>
+
+    <!-- ======= Header ======= -->
+    <header id="header">
+        <div class="container d-flex">
+
+            <div class="logo mr-auto d-inline-flex">
+                <img src="~/assets/img/RW/logo.jpg" alt="logo">
+                <h4 class="text-light pt-2"><a asp-controller="Home" asp-action="Index">RW FOUNDATION<span class="d-none d-lg-inline">(رحمت ولی فاونڈیشن)</span></a></h4>
+            </div>
+
+            <nav class="nav-menu d-none d-lg-block ">
+                <ul>
+                    <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a href="#services">Beneficiaries</a></li>
+                    <li><a href="#plans">Plans</a></li>
+                    <li><a href="#pricing">Donate US</a></li>
+                    <li><a href="#portfolio">Gallery</a></li>
+                    <li><a href="#about-us">About</a></li>
+                    <li><a href="#contact">Contact</a></li>                    
+                    <li><a asp-controller="Authentication" asp-action="Login" class="d-block d-sm-block  d-md-block d-lg-none d-xl-none ">Login</a></li>                    
+                    <li><a asp-controller="Authentication" asp-action="SignUp" class="d-block d-sm-block d-md-block d-lg-none d-xl-none">Register As Beneficiary</a></li>                    
+                    <li> <a asp-controller="Authentication" asp-action="DonorRegister" class="d-block d-sm-block d-md-block d-lg-none d-xl-none">Register As Donor</a></li>                    
+
+                </ul>
+            </nav><!-- .nav-menu -->
+
+        </div>
+    </header><!-- End Header -->
+    <div class="">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <div id="modal_remote" class="modal bg-transparent">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" id="modalBody">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <img src="~/assets/img/RW/logo.jpg" style="height: 80px;width: 80px;border-radius: 50%;" class="img-fluid" alt="logo">
+                        <h3>RW FOUNDATION</h3>
+                        <p>
+                            7/2 C, Sikandar Malhi Road, <br>
+                            Canal Park, Gulberg 2<br>
+                            Lahore, Pakistan <br><br>
+                            <strong>Phone:</strong> +92 42 38914242<br>
+                            <strong>Email:</strong> info@rwfoundation.org<br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#topbar">Home</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#about-us">About us</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#services">Distribution</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#pricing">Donate Us</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Our Working Process</h4>
+                        <ul>
+                            <li>
+                                <i class="bx bx-chevron-right"></i> <a href="#">
+                                    Forms/Data Collection Procedure
+                                </a>
+                            </li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Office Work</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Volunteers</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Distribution points</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Purchasing Details</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="#">Project Costing (Estimated)</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Join Our Newsletter</h4>
+                        <p>Signup for regular newsletter and stay up-to-date with our latest news.</p>
+                        <form action="#" method="post">
+                            <input type="email" name="email"><input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-md-flex py-4">
+
+            <div class="mr-md-auto text-center text-md-left">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>NKU TECHNOLOGIES</span></strong>. All Rights Reserved
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="https://twitter.com/rw_foundation" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.facebook.com/rwfound" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/rw.foundation/" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://www.youtube.com/channel/UCt7VgTDFUTNvdi9-Meft81A/channels" class="youtube"><i class="bx bxl-youtube"></i></a>
+
+            </div>
+        </div>
+    </footer><!-- End Footer -->
+
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+
+
+    <script src="~/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>    
+     <script src="~/Dashboard/libs/alertifyjs/alertify.min.js"></script>
+    <script src="~/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="~/assets/vendor/jquery-sticky/jquery.sticky.js"></script>
+    <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/assets/vendor/venobox/venobox.min.js"></script>
+    <script src="~/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+    <script src="~/assets/vendor/counterup/jquery.counterup.min.js"></script>
+    <script src="~/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="~/assets/vendor/aos/aos.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="~/assets/js/main.js?t=@DateTime.Now.Ticks"></script>
+
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

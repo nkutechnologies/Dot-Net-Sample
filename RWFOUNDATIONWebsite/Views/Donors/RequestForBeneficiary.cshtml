@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewData["Title"] = "RequestForBeneficiary";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+    <section class="main-section">
+        <div class="container">
+            <div class="appointment-wrap bg-white p-4 p-md-5  align-items-center">
+                <form id="Request_Beneficiary_Form" class="pb-3" enctype="multipart/form-data">
+                    <h3>Request For Beneficiary Data</h3>
+                    <div class="alert alert-dark-success alert-dismissible fade show d-none" id="manualalert">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <p class="font-weight-bold text-white" id="message"></p>
+                    </div>
+                    <div class="alert alert-dark-danger alert-dismissible fade show d-none" id="nullalert">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <p class="font-weight-bold text-white" id="message1"></p>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-lg-4 mt-3">
+                            <label class="text-dark">Donation Type</label>
+                            <div class="form-group">
+                                <div class="form-field">
+                                    <div class="select-wrap">
+                                        <select name="donationtype" id="donationtype" class="form-control" asp-items="ViewBag.donationtype">
+                                            <option data-id="" disabled>Select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mt-3">
+                            <label class="text-dark">Estimated Amount/Donation</label>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="number" min="5000" id="expecteddonation" name="expecteddonation" class="form-control" value="0">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mt-3">
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-3">
+                            <h5>You want us to choose Beneficiary data for you?</h5>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-3">
+                            <div class="d-flex">
+                                <label class="custom-control custom-radio">
+                                    <input name="type" type="radio" id="Manual" value="Manual" class="custom-control-input" checked>
+                                    <span class="custom-control-label">Yes</span>
+                                </label>
+                                <label class="custom-control custom-radio ml-4">
+                                    <input name="type" type="radio" id="Auto" value="Auto" class="custom-control-input">
+                                    <span class="custom-control-label">No</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-3">
+                            <h5>How many Member's families you want to Sponsor</h5>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 mt-3">
+                            <div class="d-flex">
+                                <label class="custom-control custom-checkbox mb-0">
+                                    <input type="checkbox" class="custom-control-input" value="1" name="member">
+                                    <span class="custom-control-label">1</span>
+                                </label>
+                                <label class="custom-control custom-checkbox mb-0 ml-2">
+                                    <input type="checkbox" class="custom-control-input" value="2" name="member">
+                                    <span class="custom-control-label">2</span>
+                                </label>
+                                <label class="custom-control custom-checkbox mb-0 ml-2">
+                                    <input type="checkbox" class="custom-control-input" value="3" name="member">
+                                    <span class="custom-control-label">3</span>
+                                </label>
+                                <label class="custom-control custom-checkbox mb-0 ml-2">
+                                    <input type="checkbox" class="custom-control-input" value="4" name="member">
+                                    <span class="custom-control-label">4</span>
+                                </label>
+                                <label class="custom-control custom-checkbox mb-0 ml-2">
+                                    <input type="checkbox" class="custom-control-input" value="5" name="member">
+                                    <span class="custom-control-label">5</span>
+                                </label>
+                                <label class="custom-control custom-checkbox mb-0 ml-2">
+                                    <input type="checkbox" class="custom-control-input" value="6" name="member">
+                                    <span class="custom-control-label">6</span>
+                                </label>
+                                <label class="custom-control custom-checkbox mb-0 ml-2">
+                                    <input type="checkbox" class="custom-control-input" value="7" name="member">
+                                    <span class="custom-control-label">7</span>
+                                </label>
+                                <label class="custom-control custom-checkbox mb-0 ml-2">
+                                    <input type="checkbox" class="custom-control-input" value="7+" name="member">
+                                    <span class="custom-control-label">7+</span>
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" mt-2">
+                        <div class="d-flex float-right">
+                            <button type="submit" class="btn btn-success float-right">
+                                <span class="spinner-border spinner-border-sm d-none" id="spinnerrequest" role="status"></span>
+                                Submit
+                            </button>
+                            <a asp-action="Index" asp-controller="UserDashboard" class="btn btn-light float-right text-dark">
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+

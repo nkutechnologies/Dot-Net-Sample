@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ItemViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+@if (Model.Any())
+{
+    <div class="card border-0 p-1">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                    <div class="text-muted text-left">
+                        <h4 class="card-title">List Of Items</h4>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-4">
+
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2">
+                    <a asp-controller="Item" asp-action="AddItem" class="btn btn-warning text-white float-right">New</a>
+                </div>
+            </div>
+        </div>
+        <table class="table card-table" width="100%">
+            <thead class="">
+                <tr>                    
+                    <th>Name</th>
+                    <th>Name(Urdu)</th>
+                    <th>Price</th>
+                    <th>Unit</th>                    
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    <tr>                       
+                        <td>@item.ItemName</td>
+                        <td class="text-primary">@item.ItemNameUrdu</td>
+                        <td>@Convert.ToInt32(item.Price)</td>
+                        <td>@item.Unit</td>                      
+                        <td class="d-inline-flex">
+                            <a asp-controller="Item" asp-action="UpdateItem" title="Update" asp-route-Id="@item.ItemId" class="btn btn-sm btn-dark mr-1 text bg-warning border-0"> <i class="feather icon-edit-2 text-white"></i></a>
+                            <a asp-controller="Item" asp-action="DeleteItem" title="Delete" asp-route-Id="@item.ItemId" class="btn btn-sm btn-dark mr-1 bg-danger border-0"><i class="feather icon-trash-2 text-white"></i></a>
+                        </td>
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+}
+else
+{
+    <div class="card bg-white border-0">
+
+        <div class="card-body px-lg-5 py-lg-5">
+            <h5 class="card-title"> There is No Item Created yet!!!!</h5>
+            <p class="text-success">Do you want to Create New?  Click <div class="row"><a asp-controller="Item" asp-action="AddItem" class="btn btn-info float-right">New</a></div></p>
+        </div>
+
+    </div>
+}
+

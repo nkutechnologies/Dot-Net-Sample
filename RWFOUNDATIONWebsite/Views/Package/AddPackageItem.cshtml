@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewData["Title"] = "AddPackageItem";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+}
+
+<section class="main-section bg-light">
+    <div class="container">
+        <div class="appointment-wrap bg-white p-4 p-md-5  align-items-center">
+            <form id="PackageItems" class="pb-3" enctype="multipart/form-data">
+                <h3>Define New Package</h3>               
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label class="text-dark">Package Category</label>
+                        <div class="form-group">
+                            <div class="form-field">
+                                <div class="select-wrap">
+                                    <select name="package" id="package" class="form-control" asp-items="ViewBag.packages">
+                                        <option data-id="">Select</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="text-dark">Package Name</label>
+                        <div class="form-group">
+                            <div class="input-wrap">
+                                <input type="text" id="packagename" name="packagename" class="form-control" placeholder="Enter Package Name">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="text-dark">Total Family Member</label>
+                        <div class="form-group">
+                            <div class="input-wrap">
+                                <input type="number" min="0" step="1" id="totalfamilymember" name="totalfamilymember" class="form-control" placeholder="Enter Family Member">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="text-dark">Package Value(PKR)</label>
+                        <div class="form-group">
+                            <div class="input-wrap">
+                                <input type="number" id="valuepkr" name="valuepkr" class="form-control" value="0" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="text-dark">Package Value(SR)</label>
+                        <div class="form-group">
+                            <div class="input-wrap">
+                                <input type="number" id="valuesr" name="valuesr" class="form-control" value="0" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="text-dark">Package Value(USD)</label>
+                        <div class="form-group">
+                            <div class="input-wrap">
+                                <input type="number" id="valueusd" name="valueusd" class="form-control" value="0" disabled>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>               
+                <div class="text-center">
+                    <h5 class="text-dark font-weight-bold text-danger">Package Items Details</h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 align-items-center">
+                        <a onclick="AddNewItem()" class="btn btn-sm bg-warning float-right text-white "><i class="icofont-plus text-white mr-1"></i>Add New Item</a>
+                        <table class="table table-light" id="packageitemtbl">
+                            <thead class="bg-warning text-white">
+                                <tr class="text-center">
+                                    <th>Item</th>
+                                    <th>Price</th> 
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr class="itemsampleRow" style="display: none" id="itemsampleRow">
+                                    <td>
+                                        <div class="form-field">
+                                            <div class="select-wrap">
+                                                <select name="item" id="item" class="form-control items" asp-items="ViewBag.items">
+                                                    <option data-id="">Select</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" name="price" id="price" value="0" class="form-control text-right price" disabled>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" min="0"  name="quantity" id="quantity" value="0" class="form-control text-right quantity">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-group">
+                                            <div class="input-wrap">
+                                                <input type="number" id="total" value="0" class="form-control text-right total" disabled>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><a title="Delete Row" onclick="deleteitemRow(this)" class="btn btn-sm bg-danger border-0 text-white float-right"><i class="feather icon-trash-2"></i></a></td>
+                                </tr>
+                            </tbody>                           
+                        </table>
+                        <div class="m-0">
+                            <div class="row">
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-6 col-6"></div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-6">
+                                    <h5 class="float-right">Total(<span class="text-primary font-weight-bolder" id="totalvalue">0</span>)</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>             
+                <div class=" mt-2">                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success float-right py-3 px-4">
+                            <span class="spinner-border spinner-border-sm d-none" id="spinneritem" role="status"></span>
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+

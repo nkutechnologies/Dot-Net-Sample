@@ -1,0 +1,79 @@
+﻿@model IEnumerable<RWFOUNDATIONWebsite.ViewModels.AssignViewModel>
+@{ 
+    int totalbeneficiary = Model.Count();
+}
+
+<div class="text-center">
+    <h5 class="text-dark font-weight-bold text-danger">Beneficiary List To Assign(@totalbeneficiary)</h5>
+</div>
+<form>   
+    
+    <div class="form-row">       
+        <div class="form-group col-md-12">
+            <label class="form-label">Assign To:</label>
+            <select class="custom-select" id="userid" asp-items="ViewBag.Users">                
+            </select>
+        </div>       
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-12 align-items-center">
+            <table class="table table-light" id="grocerytblAssign">
+                <thead class="bg-warning text-white">
+                    <tr class="text-center">
+                        <th>Form Number</th>
+                        <th>Name</th>
+                        <th>CNIC</th>
+                        <th>Status</th>
+                        <th>FamilySize</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td class="d-none"><input value="@item.GroceryKitId" /></td>
+                        <td>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" value="@item.FormNumber" class="form-control  text-center font-weight-bolder " disabled>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" value="@item.FirstName  @item.LastName" class="form-control  text-center font-weight-bold" disabled>
+                                </div>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" value="@item.CNIC" class="form-control" placeholder="CNIC" disabled>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" value="@item.Status" class="form-control" placeholder="CNIC" disabled>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <div class="input-wrap">
+                                    <input type="text" value="@item.FamilySize" class="form-control" placeholder="CNIC" disabled>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button type="button" onclick="AssignGroceryKit()" class="btn btn-success">Assign</button>
+</form>
